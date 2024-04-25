@@ -13,6 +13,8 @@ public class HoverEffect : MonoBehaviour
         if (IsPointerOverUI(this.gameObject))
         {
             foreach (GameObject obj in objToShow) obj.SetActive(true);
+        }else{
+            foreach (GameObject obj in objToShow) obj.SetActive(false); // 新加，悬浮时显示，此外不显示
         }
     }
 

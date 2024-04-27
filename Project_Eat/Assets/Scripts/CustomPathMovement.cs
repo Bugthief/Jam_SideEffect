@@ -8,7 +8,7 @@ public class CustomPathMovement : MonoBehaviour
     public List<Transform> pathPoints; // 关键路径点的 Transform
     public float spawnInterval = 1f; // 生成间隔
     public float movementDuration = 5f; // 运动持续时间
-
+    
     private void Start()
     {
         // 启动生成预制体协程
@@ -33,7 +33,7 @@ public class CustomPathMovement : MonoBehaviour
     IEnumerator MoveObjectAlongCustomPath(GameObject obj)
     {
         float startTime = Time.time;
-
+        
         for (int i = 1; i < pathPoints.Count; i++)
         {
             Vector3 startPos = pathPoints[i - 1].position;

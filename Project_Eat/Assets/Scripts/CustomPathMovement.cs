@@ -24,6 +24,7 @@ public class CustomPathMovement : MonoBehaviour
 
             // 启动预制体运动协程
             StartCoroutine(MoveObjectAlongCustomPath(newObject));
+            newObject.GetComponent<DraggableFood>().isMoving = true;
 
             // 等待生成间隔
             yield return new WaitForSeconds(spawnInterval);
@@ -43,7 +44,13 @@ public class CustomPathMovement : MonoBehaviour
             {
                 float t = (Time.time - startTime) / movementDuration;
                 Vector3 newPosition = Vector3.Lerp(startPos, endPos, t);
-                obj.transform.position = newPosition;
+                
+                // 若在运动状态，则随着传送带路径移动
+                if(obj.GetComponent<DraggableFood>().isMoving)
+                {
+                    obj.transform.position = newPosition;
+                }
+                
                 yield return null;
             }
 

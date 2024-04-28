@@ -12,6 +12,8 @@ public class DraggableFood : MonoBehaviour
     private bool isDragging = false; // 是否正在拖拽
     private bool isLocked = false;// 是否锁定？-可否被拖动
 
+    public bool isMoving = true;// 是否在随着传送带运动？
+
     void Update()
     {
         if(!isLocked)
@@ -22,6 +24,7 @@ public class DraggableFood : MonoBehaviour
                 ghost.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0f);
             }
 
+            // 按下鼠标左键时
             if (Input.GetMouseButtonDown(0))
             {
                 if (IsMouseOverFood())
@@ -31,15 +34,17 @@ public class DraggableFood : MonoBehaviour
                 }
             }
 
+            // 抬起鼠标左键时
             if (Input.GetMouseButtonUp(0))
             {
+                
                 if (isDragging)
                 {
                     isDragging = false;
-
+                    
                     if(IsGhostinSlots())
                     {
-                        // gameObject.transform.position = slot.transform.position;
+                        // 如果虚影在槽位区域
                         isLocked = true;
                     }
                     
@@ -69,12 +74,19 @@ public class DraggableFood : MonoBehaviour
     bool IsGhostinSlots()
     {
         GameObject[] slots = GameObject.FindGameObjectsWithTag("slot");
+
         foreach (GameObject slot in slots)
         {
+            Debug.Log("_checked_");
             Collider2D ghostCollider = ghost.GetComponent<BoxCollider2D>();
             Collider2D slotCollider = slot.GetComponent<BoxCollider2D>();
+
+            //Debug.Log("print:" + ghostCollider.IsTouching(slotCollider));
+
             if (ghostCollider.IsTouching(slotCollider))
             {
+                Debug.Log("_moved_");
+                isMoving = false;// 解除运动状态，可被移动
                 gameObject.transform.position = slot.transform.position;
 
                 return true;
@@ -92,20 +104,3 @@ public class DraggableFood : MonoBehaviour
     }
 
 }
-
-// bool IsGhostOverSlots()
-    // {
-    //     Collider2D ghostCollider = ghost.GetComponent<Collider2D>();
-    //     if(ghostCollider.IsTouching(slot.GetComponent<Collider2D>()))
-    //     {
-    //         Debug.Log("Yes!");
-    //         return true;
-    //     }
-    //     else
-    //     {
-    //         Debug.Log("No...");
-    //         return false;
-    //     }
-        
-        
-    // }

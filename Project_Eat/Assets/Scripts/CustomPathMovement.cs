@@ -58,6 +58,10 @@ public class CustomPathMovement : MonoBehaviour
         }
 
         // 移动完成后销毁预制体
-        Destroy(obj);
+        if(obj.GetComponent<DraggableFood>().canDestroy)
+        {
+            Destroy(obj);
+        }
+        
     }
 }

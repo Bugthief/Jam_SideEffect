@@ -89,7 +89,7 @@ public class ClickableFood : MonoBehaviour
             ghost.GetComponent<ClickableFood>().isGhostCreated = true;
 
             // 添加阻止鼠标事件的脚本
-            ghost.AddComponent<BlockMouseEvents>();
+            // ghost.AddComponent<BlockMouseEvents>();
         }
         
     }

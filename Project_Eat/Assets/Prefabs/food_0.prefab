@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 6948863100434220840}
   - component: {fileID: 6948863100434220839}
   - component: {fileID: 8536069179020583933}
+  - component: {fileID: 4282151937261510746}
   - component: {fileID: 8149420232260992878}
   - component: {fileID: 1209904417}
   m_Layer: 0
@@ -126,14 +127,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6948863100434220838}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42ca84a40527b2b47bd1061d3010b706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plate: {fileID: 0}
   ghostPrefab: {fileID: 0}
   isMoving: 1
+  canDestroy: 1
+--- !u!114 &4282151937261510746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6948863100434220838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f098af3ece78ac46a41c17be97a381e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostPrefab: {fileID: 0}
+  isMoving: 1
+  canDestroy: 1
 --- !u!61 &8149420232260992878
 BoxCollider2D:
   m_ObjectHideFlags: 0

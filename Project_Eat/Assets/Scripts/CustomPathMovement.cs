@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CustomPathMovement : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class CustomPathMovement : MonoBehaviour
     public List<Transform> pathPoints; // 关键路径点的 Transform
     public float spawnInterval = 1f; // 生成间隔
     public float movementDuration = 5f; // 运动持续时间
+
+    public bool isDragMode;
     
     private void Start()
     {
@@ -24,7 +27,15 @@ public class CustomPathMovement : MonoBehaviour
 
             // 启动预制体运动协程
             StartCoroutine(MoveObjectAlongCustomPath(newObject));
-            newObject.GetComponent<DraggableFood>().isMoving = true;
+            if(isDragMode)
+            {
+                newObject.GetComponent<DraggableFood>().isMoving = true;
+            }
+            else
+            {
+                newObject.GetComponent<ClickableFood>().isMoving = true;
+            }
+            
 
             // 等待生成间隔
             yield return new WaitForSeconds(spawnInterval);
@@ -45,11 +56,25 @@ public class CustomPathMovement : MonoBehaviour
                 float t = (Time.time - startTime) / movementDuration;
                 Vector3 newPosition = Vector3.Lerp(startPos, endPos, t);
                 
-                // 若在运动状态，则随着传送带路径移动
-                if(obj.GetComponent<DraggableFood>().isMoving)
+                // 拖拽还是点击模式
+                if(isDragMode)
                 {
-                    obj.transform.position = newPosition;
+                    // 若在运动状态，则随着传送带路径移动
+                    if(obj.GetComponent<DraggableFood>().isMoving)
+                    {
+                        obj.transform.position = newPosition;
+                    }
+                    
                 }
+                else
+                {
+                    // 若在运动状态，则随着传送带路径移动
+                    if(obj.GetComponent<ClickableFood>().isMoving)
+                    {
+                        obj.transform.position = newPosition;
+                    }
+                }
+                
                 
                 yield return null;
             }
@@ -57,11 +82,27 @@ public class CustomPathMovement : MonoBehaviour
             startTime = Time.time;
         }
 
-        // 移动完成后销毁预制体
-        if(obj.GetComponent<DraggableFood>().canDestroy)
+        if(isDragMode)
         {
-            Destroy(obj);
+            // 移动完成后销毁预制体
+            if(obj.GetComponent<DraggableFood>().canDestroy)
+            {
+                Destroy(obj);
+                
+            }
+
         }
+        else
+        {
+            // 移动完成后销毁预制体
+            if(obj.GetComponent<ClickableFood>().canDestroy)
+            {
+                
+                Destroy(obj);
+                
+            }
+        }
+        
         
     }
 }

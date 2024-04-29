@@ -39,4 +39,13 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public static void DestroyInstance()
+    {
+        if (Instance != null)
+        {
+            Destroy(Instance.gameObject);
+            Instance = null;
+        }
+    }
 }

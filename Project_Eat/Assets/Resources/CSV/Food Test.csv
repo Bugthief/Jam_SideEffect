@@ -1,0 +1,3 @@
+﻿FoodKey,FoodName,FoodType,FoodDescription,FoodPoint,FoodTime,SideEffectNameList
+GrilledLeeks,辣烤韭菜,meat;vegetables,这是辣烤素材的介绍,5,16,Burning;Inlove
+GrilledLeeks2,辣烤韭菜,meat;vegetables,这是辣烤素材的介绍,5,16,Burning;Inlove

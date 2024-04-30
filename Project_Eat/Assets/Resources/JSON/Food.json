@@ -1,0 +1,144 @@
+[
+  {
+    "FoodKey": "GrilledLeeks",
+    "FoodName": "辣烤韭菜",
+    "FoodType": "meat,vegetables",
+    "FoodDescription": "这是辣烤素材的介绍",
+    "FoodPoint": 5,
+    "FoodTime": 15,
+    "SideEffectNameList": "Burning，InLove"
+  },
+  {
+    "FoodKey": "PorkLoinSoupWithGinsengAndMedicinalHerbs",
+    "FoodName": "参药猪腰汤"
+  },
+  {
+    "FoodKey": "BatteryJuiceCoconutSoup",
+    "FoodName": "电池汁椰汤"
+  },
+  {
+    "FoodKey": "SeaLandArcticSoup",
+    "FoodName": "海陆极地汤"
+  },
+  {
+    "FoodKey": "RiceCarrotSoupWithBrim",
+    "FoodName": "帽檐米饭胡萝卜浓汤"
+  },
+  {
+    "FoodKey": "FlowBlueRice",
+    "FoodName": "流蓝饭"
+  },
+  {
+    "FoodKey": "FranLittleGrassLeak",
+    "FoodName": "弗兰小草漏"
+  },
+  {
+    "FoodKey": "MagnumSupremeSteak",
+    "FoodName": "左轮至尊牛排"
+  },
+  {
+    "FoodKey": "FireIcePineappleOil",
+    "FoodName": "冰火菠萝油"
+  },
+  {
+    "FoodKey": "ScenicSausage",
+    "FoodName": "景区烤肠"
+  },
+  {
+    "FoodKey": "BraisedBeefShank",
+    "FoodName": "卤牛腱子"
+  },
+  {
+    "FoodKey": "RoastedMeatAssortment",
+    "FoodName": "烧味四拼"
+  },
+  {
+    "FoodKey": "ForestMilkPowder",
+    "FoodName": "林乳奶粉"
+  },
+  {
+    "FoodKey": "GrandmasFalseTeeth",
+    "FoodName": "奶奶的假牙"
+  },
+  {
+    "FoodKey": "GarlicStewedMillenniumTurtle",
+    "FoodName": "蒜头炖千年老鳖"
+  },
+  {
+    "FoodKey": "ExpiredCoffeeFreezeDriedBlock",
+    "FoodName": "临期咖啡冻干块"
+  },
+  {
+    "FoodKey": "SaffronPizza",
+    "FoodName": "藏红花披萨"
+  },
+  {
+    "FoodKey": "RedBullBubbleMilkTea",
+    "FoodName": "红牛波波奶茶"
+  },
+  {
+    "FoodKey": "LaboratoryExtractedFerrousIonSolution",
+    "FoodName": "实验室提取亚铁离子溶液"
+  },
+  {
+    "FoodKey": "BreadOfAWanderingTramp",
+    "FoodName": "流浪汉的面包"
+  },
+  {
+    "FoodKey": "WaldesSpringChickpeaPureeCanned",
+    "FoodName": "瓦尔德春天鹰嘴豆泥罐头"
+  },
+  {
+    "FoodKey": "VolcanicAshPumpkinJuice",
+    "FoodName": "火山灰南瓜汁"
+  },
+  {
+    "FoodKey": "MandelaVegetableSoup",
+    "FoodName": "曼德拉时蔬汤"
+  },
+  {
+    "FoodKey": "RawPickledFugu",
+    "FoodName": "生腌河豚"
+  },
+  {
+    "FoodKey": "SpicyStirFriedNewtEyes",
+    "FoodName": "辣炒蝾螈眼肉"
+  },
+  {
+    "FoodKey": "ProximaCentauriBBrilliantPudding",
+    "FoodName": "普罗克西马b(Proxima Centauri b)光辉布丁"
+  },
+  {
+    "FoodKey": "ColdRabbitCubes",
+    "FoodName": "冷吃兔兔丁丁"
+  },
+  {
+    "FoodKey": "BraisedSheepHeadNoodles",
+    "FoodName": "红烧羊头面"
+  },
+  {
+    "FoodKey": "ExplodingSlimeEyeballs",
+    "FoodName": "爆浆史莱姆眼球"
+  },
+  {
+    "FoodKey": "MysteryMushroomSoup",
+    "FoodName": "不知道哪来的蘑菇汤"
+  },
+  {
+    "FoodKey": "FluorescentSporeSmokedRhopsePorkChop",
+    "FoodName": "荧光孢子烟熏罗普斯猪排"
+  },
+  {
+    "FoodKey": "ColdFernAndMossSalad",
+    "FoodName": "凉拌苔藓与蕨类植物"
+  },
+  {
+    "FoodKey": "BenedictGreenBirdEgg",
+    "FoodName": "班尼迪克青羽鸟蛋蛋"
+  },
+  {
+    "FoodKey": "DeepSeaJellyfishSalad",
+    "FoodName": "深海水母沙拉"
+  }
+]
+

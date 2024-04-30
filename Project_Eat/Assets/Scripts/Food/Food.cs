@@ -57,12 +57,13 @@ public class Food
 
     public enum FoodTypeEnum
     {
-        meat,
-        vegetables,
-        soup,
-        drink,
-        strange,
-        main
+        Meat,
+        Vegetables,
+        Soup,
+        Drink,
+        Strange,
+        Main,
+        Dessert
     }
 
     public enum SideEffectTypeEnum

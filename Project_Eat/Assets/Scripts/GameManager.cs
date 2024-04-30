@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, Food> FoodDictionary;
     public Dictionary<SideEffectTypeEnum, SideEffect> SideEffectDictionary;
 
+    public List<string> FoodKeyList;
+
     private void Awake()
     {
         if (Instance == null)
@@ -33,11 +35,14 @@ public class GameManager : MonoBehaviour
 
         FoodDictionary = FoodLoader.BuildFoodDictionary();
         SideEffectDictionary = SideEffectLoader.BuildSideEffectDictionary();
+        FoodKeyList = GenerateFoodKeyList(FoodDictionary);
     }
 
     private void Start()
     {
-        
+        Debug.Log("Hi");
+
+
     }
 
     public static void DestroyInstance()
@@ -47,5 +52,17 @@ public class GameManager : MonoBehaviour
             Destroy(Instance.gameObject);
             Instance = null;
         }
+    }
+
+    public List<string> GenerateFoodKeyList(Dictionary<string, Food> dictionary)
+    {
+        List<string> list = new List<string>();
+
+        foreach(string key in dictionary.Keys)
+        {
+            list.Add(key);
+        }
+
+        return list;
     }
 }

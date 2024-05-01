@@ -581,6 +581,7 @@ MonoBehaviour:
   - {fileID: 804518828}
   spawnInterval: 3
   movementDuration: 3
+  isDragMode: 1
 --- !u!114 &84629433
 MonoBehaviour:
   m_ObjectHideFlags: 0

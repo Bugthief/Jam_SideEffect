@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Hi");
+        //Debug.Log("Hi");
 
 
     }

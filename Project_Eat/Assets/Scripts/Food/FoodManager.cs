@@ -6,21 +6,32 @@ using static Food;
 
 public class FoodManager : MonoBehaviour
 {
-    public void EatFood(string foodKey)
-    {
-        Food thisFood = GameManager.Instance.FoodDictionary[foodKey];
-        GameManager.Instance.currentPoint += thisFood.FoodPoint * GameManager.Instance.pointA;
-        GameManager.Instance.currentTime += thisFood.FoodTime * GameManager.Instance.speedA;
+    public SideEffectManager SideEffectManager;
 
-        foreach (SideEffectTypeEnum sideEffectTypeEnum in thisFood.SideEffectNameList)
+    public void EatFood(List<string> foodKeyList)
+    {
+        float timeThisRound = 0f;
+        float pointThisRound = 0f;
+        List<SideEffectTypeEnum> effectThisRound = new List<SideEffectTypeEnum>();
+
+        foreach(string foodKey in foodKeyList)
         {
-            BuffEffect(sideEffectTypeEnum);
-        }
-    }
+            Food thisFood = GameManager.Instance.FoodDictionary[foodKey];
+            pointThisRound += thisFood.FoodPoint;
+            timeThisRound += thisFood.FoodTime;
 
-    public void BuffEffect(SideEffectTypeEnum sideEffectTypeEnum)
-    {
-        SideEffect thisSideEffect = GameManager.Instance.SideEffectDictionary[sideEffectTypeEnum];
-        thisSideEffect.AddSideEffectCount();
+            foreach(SideEffectTypeEnum sideEffectTypeEnum in thisFood.SideEffectNameList)
+            {
+                effectThisRound.Add(sideEffectTypeEnum);
+            }
+        }
+
+        GameManager.Instance.currentPoint += pointThisRound * GameManager.Instance.pointA;
+        GameManager.Instance.currentTime += timeThisRound / GameManager.Instance.speedA;
+
+        foreach (SideEffectTypeEnum sideEffectTypeEnum in effectThisRound)
+        {
+            SideEffectManager.BuffEffect(sideEffectTypeEnum);
+        }
     }
 }

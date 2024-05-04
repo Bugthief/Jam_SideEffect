@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+// 食物的运动
 public class DraggableFood : MonoBehaviour
 {
 
@@ -16,6 +17,7 @@ public class DraggableFood : MonoBehaviour
     public bool isMoving = true;// 是否在随着传送带运动？
 
     public bool canDestroy = true;// 可否销毁
+
 
     void Update()
     {
@@ -49,6 +51,7 @@ public class DraggableFood : MonoBehaviour
                     if(IsGhostinPlate())
                     {   
                         moveFoodintoSlot();
+                        
                     }
                     
                     Destroy(ghost); // 无论是否重叠，松开鼠标都消除虚影

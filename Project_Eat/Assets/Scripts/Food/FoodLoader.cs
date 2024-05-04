@@ -8,6 +8,7 @@ public class FoodLoader : MonoBehaviour
 {
     public static TextAsset csvFile;
 
+    // 从CSV的Food文件获取食物列表，并传到foodDictionary中
     public static Dictionary<string, Food> BuildFoodDictionary()
     {
         TextAsset csvFile = Resources.Load<TextAsset>("CSV/Food");

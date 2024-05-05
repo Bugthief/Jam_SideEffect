@@ -189,6 +189,14 @@ public class DraggableFood : MonoBehaviour
 
             PlateManager plateManager = FindObjectOfType<PlateManager>();
             plateManager.foodKeyList.Add(foodKey);
+
+            if(plateManager.food_1 == null){
+                plateManager.food_1 = gameObject;
+            }
+            else
+            {
+                plateManager.food_2 = gameObject;
+            }
         }
     }
 }

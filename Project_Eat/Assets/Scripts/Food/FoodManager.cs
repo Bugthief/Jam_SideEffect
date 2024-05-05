@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using static Food;
 
@@ -9,11 +8,24 @@ public class FoodManager : MonoBehaviour
 {
     public SideEffectManager SideEffectManager;
     public GeneralInfo GeneralInfo;
-    public bool isEating;
+
+    public event Action<bool> OnEatingStatusChanged;
+    private bool isEating;
+
+    public bool IsEating
+    {
+        get { return isEating; }
+        set
+        {
+            isEating = value;
+
+            OnEatingStatusChanged?.Invoke(isEating);
+        }
+    }
 
     public void EatFoodList(List<string> foodKeyList)
     {
-        isEating = true;
+        IsEating = true;
 
         // Calculate the time and point from those food
         (float timeThisRound, float pointThisRound) = CalculateFoodList(foodKeyList);
@@ -44,7 +56,7 @@ public class FoodManager : MonoBehaviour
 
             GeneralInfo.UpdatePointText(GameManager.Instance.currentPoint);
 
-            isEating = false;
+            IsEating = false;
         }));
     }
 

@@ -8,26 +8,36 @@ public class PlateManager : MonoBehaviour
     public GameObject slot_2;
     public bool slotEmpty_1; // 槽位状态，用于记录每个槽位是否为空闲
     public bool slotEmpty_2;
+    public GameObject food_1;
+    public GameObject food_2;
 
     public List<string> foodKeyList;
     public FoodManager foodManager;
+    public EatingPlate eatingPlate;
+    public bool isEating;
 
     private void Start()
     {
-        // 初始化槽位状态数组，默认所有槽位都为空闲
-        slotEmpty_1 = true;
-        slotEmpty_2 = true;
-        foodKeyList = new List<string>();
+        InitializePlate();
+
+        foodManager.OnEatingStatusChanged += EatingStatusChanged;
     }
 
     private void Update()
     {
-        if (!slotEmpty_1 && !slotEmpty_2 && !foodManager.isEating)
+        if (!slotEmpty_1 && !slotEmpty_2 && !isEating)
         {
             foodManager.EatFoodList(foodKeyList);
+            eatingPlate.MoveToEatingPlate(food_1, food_2);
+
+            InitializePlate();
         }
     }
 
+    private void EatingStatusChanged(bool newStatus)
+    {
+        isEating = newStatus;
+    }
 
     // 检查空的槽位，并返回对应的对象
     public GameObject EmptySlot()
@@ -54,6 +64,15 @@ public class PlateManager : MonoBehaviour
         }
         print("餐盘满了！");
         return null;
+    }
+
+    public void InitializePlate()
+    {
+        slotEmpty_1 = true;
+        slotEmpty_2 = true;
+        food_1 = null;
+        food_2 = null;
+        foodKeyList = new List<string>();
     }
 
 }

@@ -18,6 +18,16 @@ public class DraggableFood : MonoBehaviour
 
     public bool canDestroy = true;// 可否销毁
 
+    public GameObject introTextBox; //食物信息界面对象
+    public Canvas targetCanvas;
+
+    public FoodProps foodProps;
+    public string foodKey;
+
+    private void Start()
+    {
+        targetCanvas.worldCamera = Camera.main;
+    }
 
     void Update()
     {
@@ -50,7 +60,7 @@ public class DraggableFood : MonoBehaviour
                     // 如果虚影在【槽位】->【餐盘】区域, 检测空的槽位，若有，则将源食物移动到第一个找到的空槽位中，并锁定
                     if(IsGhostinPlate())
                     {   
-                        moveFoodintoSlot();
+                        MoveFoodintoSlot();
                         
                     }
                     
@@ -58,7 +68,9 @@ public class DraggableFood : MonoBehaviour
                 }
             }
         }
-        
+
+        introTextBox.SetActive(IsMouseOverFood());
+
     }
 
     // 检测鼠标是否在食物上
@@ -82,6 +94,7 @@ public class DraggableFood : MonoBehaviour
         // 创建虚影
 
         ghost = Instantiate(gameObject, transform.position, Quaternion.identity);
+        ghost.GetComponent<FoodProps>().thisFoodKey = foodKey;
         ghost.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f); // 设置透明度为0.5
     }
 
@@ -129,7 +142,7 @@ public class DraggableFood : MonoBehaviour
         return false;
     }
 
-    void moveFoodintoSlot()
+    void MoveFoodintoSlot()
     {
         GameObject plate = GameObject.FindGameObjectWithTag("plate");
         GameObject firstEmptySlot = plate.GetComponent<PlateManager>().EmptySlot();
@@ -141,11 +154,9 @@ public class DraggableFood : MonoBehaviour
             isMoving = false;// 解除运动状态，可被变换位置
             isLocked = true;// 锁定位置，不能被拖动
             canDestroy = false;// 不被传送带摧毁
-        }
-        
-        
+            
+            PlateManager plateManager = FindObjectOfType<PlateManager>();
+            plateManager.foodKeyList.Add(foodKey);
+        }  
     }
-
-    
-
 }

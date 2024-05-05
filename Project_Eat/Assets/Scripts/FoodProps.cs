@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // 食物的key, 属性
 public class FoodProps : MonoBehaviour
 {
-    public string thisFoodName;
+    public string thisFoodKey;
+    public TMP_Text foodIntroTextBox;
+
+    public DraggableFood draggableFood;
 
     void Start()
     {
         GetRandomFoodKey();
-
+        UpdateHoverUI();
     }
 
     // 从foodKeyList中随机获取一个key，并打印
@@ -23,10 +27,12 @@ public class FoodProps : MonoBehaviour
             int randomIndex = Random.Range(0, GameManager.Instance.FoodKeyList.Count);
 
             // 获取随机索引处的元素
-            thisFoodName = GameManager.Instance.FoodKeyList[randomIndex];
+            thisFoodKey = GameManager.Instance.FoodKeyList[randomIndex];
+
+            draggableFood.foodKey = thisFoodKey;
 
             // 打印所选的随机字符串
-            Debug.Log("Random Food is: " + thisFoodName);
+            Debug.Log("Random Food is: " + thisFoodKey);
         }
         else
         {
@@ -51,5 +57,17 @@ public class FoodProps : MonoBehaviour
         {
             Debug.LogError("List is null or empty!");
         }
+    }
+
+    void UpdateHoverUI()
+    {
+        Food thisFood = GameManager.Instance.FoodDictionary[thisFoodKey];
+
+        foodIntroTextBox.text =
+            thisFood.FoodName + "\n" +
+            thisFood.FoodDescription + "\n" +
+            "分数： " + thisFood.FoodPoint + "\n" +
+            "时间： " + thisFood.FoodTime;
+
     }
 }

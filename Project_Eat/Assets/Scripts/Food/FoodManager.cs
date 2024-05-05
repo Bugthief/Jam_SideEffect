@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,39 +14,43 @@ public class FoodManager : MonoBehaviour
     {
         isEating = true;
 
-        //calculate the time and point from those food
+        // Calculate the time and point from those food
         (float timeThisRound, float pointThisRound) = CalculateFoodList(foodKeyList);
 
-        //wait for finishing the food
-        StartCoroutine(SpendingTime(timeThisRound));
-
-        GameManager.Instance.currentPoint += pointThisRound;
-
-        List<SideEffectTypeEnum> effectThisRound = new List<SideEffectTypeEnum>();
-
-        foreach (string foodKey in foodKeyList)
+        // Start the SpendingTime coroutine and execute the remaining code after the coroutine completes
+        StartCoroutine(SpendingTime(timeThisRound, () =>
         {
-            Food thisFood = GameManager.Instance.FoodDictionary[foodKey];
+            // This code will be executed after the SpendingTime coroutine completes
+            GameManager.Instance.currentPoint += pointThisRound;
 
-            foreach (SideEffectTypeEnum sideEffectTypeEnum in thisFood.SideEffectNameList)
+            List<SideEffectTypeEnum> effectThisRound = new List<SideEffectTypeEnum>();
+
+            foreach (string foodKey in foodKeyList)
             {
-                effectThisRound.Add(sideEffectTypeEnum);
+                Food thisFood = GameManager.Instance.FoodDictionary[foodKey];
+
+                foreach (SideEffectTypeEnum sideEffectTypeEnum in thisFood.SideEffectNameList)
+                {
+                    effectThisRound.Add(sideEffectTypeEnum);
+                }
             }
-        }
 
-        foreach (SideEffectTypeEnum sideEffectTypeEnum in effectThisRound)
-        {
-            SideEffectManager.BuffEffect(sideEffectTypeEnum);
-        }
+            foreach (SideEffectTypeEnum sideEffectTypeEnum in effectThisRound)
+            {
+                SideEffectManager.BuffEffect(sideEffectTypeEnum);
+            }
 
-        isEating = false;
+            isEating = false;
+        }));
     }
 
-    public IEnumerator SpendingTime(float time)
+    public IEnumerator SpendingTime(float time, Action onComplete)
     {
         yield return new WaitForSeconds(time);
-    }
 
+        // Call the onComplete action when the coroutine completes
+        onComplete?.Invoke();
+    }
 
     //calculate the point and time with effect and speed
     public (float, float) CalculateFoodList(List<string> foodKeyList)

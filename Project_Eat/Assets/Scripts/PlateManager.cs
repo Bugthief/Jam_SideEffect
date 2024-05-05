@@ -6,8 +6,8 @@ public class PlateManager : MonoBehaviour
 {
     public GameObject slot_1;
     public GameObject slot_2;
-    private bool slotEmpty_1; // 槽位状态，用于记录每个槽位是否为空闲
-    private bool slotEmpty_2;
+    public bool slotEmpty_1; // 槽位状态，用于记录每个槽位是否为空闲
+    public bool slotEmpty_2;
 
     public List<string> foodKeyList;
     public FoodManager foodManager;

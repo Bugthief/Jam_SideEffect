@@ -32,9 +32,6 @@ public class SideEffectManager : MonoBehaviour
 
         PicaFoodA = 1f;
         NonPicaFoodA = 1f;
-
-        GenerateEffectIcon(SideEffectTypeEnum.InLove);
-        GenerateEffectIcon(SideEffectTypeEnum.Toxic);
     }
 
     public (float, float) CalculateUnderEffect(Food food)

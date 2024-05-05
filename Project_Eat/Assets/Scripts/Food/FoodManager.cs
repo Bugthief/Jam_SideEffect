@@ -8,6 +8,7 @@ using static Food;
 public class FoodManager : MonoBehaviour
 {
     public SideEffectManager SideEffectManager;
+    public GeneralInfo GeneralInfo;
     public bool isEating;
 
     public void EatFoodList(List<string> foodKeyList)
@@ -39,6 +40,8 @@ public class FoodManager : MonoBehaviour
             {
                 SideEffectManager.BuffEffect(sideEffectTypeEnum);
             }
+
+            GeneralInfo.UpdatePointText(GameManager.Instance.currentPoint);
 
             isEating = false;
         }));

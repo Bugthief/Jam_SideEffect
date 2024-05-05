@@ -8,6 +8,8 @@ public class TimeManager : MonoBehaviour
     public float currentTime;
     public float maxTime;
 
+    public GeneralInfo generalInfo;
+
     public void StartCountDown(float startTime, float endTime)
     {
         isCoutingDown = true;
@@ -21,6 +23,9 @@ public class TimeManager : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             GameManager.Instance.currentTime = currentTime;
+            float timeLeft = maxTime - currentTime;
+            generalInfo.UpdateTimeText(timeLeft);
+
             if(currentTime >= maxTime)
             {
                 isCoutingDown = false;

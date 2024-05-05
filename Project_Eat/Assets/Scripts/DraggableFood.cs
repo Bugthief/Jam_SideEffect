@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class DraggableFood : MonoBehaviour
 {
 
-    public GameObject ghostPrefab; // 虚影的预制体
+    // public GameObject ghostPrefab; // 虚影的预制体
     // public GameObject slot; // 槽位预制体游戏对象
-    private GameObject ghost; // 虚影的实例
+    public GameObject ghost; // 虚影的实例
     public bool isDragging = false; // 是否正在拖拽
     private bool isLocked = false;// 是否锁定？-可否被拖动
 
@@ -41,7 +41,6 @@ public class DraggableFood : MonoBehaviour
                 {
                     ghost.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0f);
                 }
-
             }
 
             // 按下鼠标左键时
@@ -74,8 +73,24 @@ public class DraggableFood : MonoBehaviour
             }
         }
 
+        if (gameObject.tag == "ghost")
+        {
+            introTextBox.SetActive(IsMouseOverFood());
+        }
+        else
+        {
+            if(ghost == null)
+            {
+                introTextBox.SetActive(IsMouseOverFood());
+            }
+            else
+            {
+                introTextBox.SetActive(false);
+            }
+        }
 
-        introTextBox.SetActive(IsMouseOverFood());
+
+        
 
     }
 
@@ -85,20 +100,22 @@ public class DraggableFood : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Collider2D[] colliders = Physics2D.OverlapPointAll(new Vector2(mousePosition.x, mousePosition.y));
 
-        //foreach (Collider2D collider in colliders)
-        //{
-        //    if (collider.gameObject == gameObject)
-        //    {
-        //        return true;
-        //    }
-        //}
-        if (colliders.Length > 0)
+        foreach (Collider2D collider in colliders)
         {
-            if (colliders[^1].gameObject == gameObject)
+            if (collider.gameObject == gameObject)
             {
                 return true;
             }
         }
+
+
+        //if (colliders.Length > 0)
+        //{
+        //    if (colliders[^1].gameObject == gameObject)
+        //    {
+        //        return true;
+        //    }
+        //}
 
         return false;
     }

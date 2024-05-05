@@ -40,8 +40,8 @@ public class SideEffectManager : MonoBehaviour
         float time = food.FoodTime;
         float point = food.FoodPoint;
 
-        CheckVegan(food, time, point);
-        CheckPica(food, point);
+        (time, point) = CheckVegan(food, time, point);
+        point = CheckPica(food, point);
         CheckCarnivore(food);
 
         time /= speedA;
@@ -338,7 +338,7 @@ public class SideEffectManager : MonoBehaviour
 
     public void EffectVegan(SideEffect sideEffect)
     {
-        isVeganBuffed = true;
+        //isVeganBuffed = true;
     }
 
     public void EffectCarnivore(SideEffect sideEffect)
@@ -378,10 +378,12 @@ public class SideEffectManager : MonoBehaviour
     {
         if (food.FoodTypeList.Contains(FoodTypeEnum.Strange))
         {
+            Debug.Log(food);
             point *= PicaFoodA;
         }
         else
         {
+            Debug.Log(food);
             point *= NonPicaFoodA;
         }
 

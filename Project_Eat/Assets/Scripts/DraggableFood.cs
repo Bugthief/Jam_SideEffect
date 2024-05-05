@@ -37,7 +37,11 @@ public class DraggableFood : MonoBehaviour
             if (isDragging)
             {
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                ghost.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0f);
+                if (ghost != null)
+                {
+                    ghost.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0f);
+                }
+
             }
 
             // 按下鼠标左键时
@@ -69,7 +73,7 @@ public class DraggableFood : MonoBehaviour
                 }
             }
         }
-        
+
 
         introTextBox.SetActive(IsMouseOverFood());
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GeneralButton : MonoBehaviour
 {
+
+
     public void GeneralOnClick(GameObject[] objToClose, GameObject[] objToOpen)
     {
         if (objToClose != null)

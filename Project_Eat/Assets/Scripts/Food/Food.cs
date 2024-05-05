@@ -84,6 +84,7 @@ public class Food
         Mood,
         Numb,
         Pica,
-        Shining
+        Shining,
+        Carnivore
     }
 }

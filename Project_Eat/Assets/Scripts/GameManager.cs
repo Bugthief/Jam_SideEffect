@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, Food> FoodDictionary;
     public Dictionary<SideEffectTypeEnum, SideEffect> SideEffectDictionary;
 
+    public TimeManager TimeManager;
+
     public List<string> FoodKeyList;
 
     private void Awake()
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //Debug.Log("Hi");
-
+        TimeManager.StartCountDown(0f, maxTime);
 
     }
 

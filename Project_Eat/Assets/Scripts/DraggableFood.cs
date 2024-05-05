@@ -41,6 +41,7 @@ public class DraggableFood : MonoBehaviour
                 {
                     ghost.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0f);
                 }
+
             }
 
             // 按下鼠标左键时

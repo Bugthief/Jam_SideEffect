@@ -80,8 +80,8 @@ public class FoodManager : MonoBehaviour
 
             (float foodTime, float foodPoint) = SideEffectManager.CalculateUnderEffect(thisFood);
 
-            pointThisRound += thisFood.FoodPoint;
-            timeThisRound += thisFood.FoodTime;
+            pointThisRound += foodPoint;
+            timeThisRound += foodTime;
         }
 
         return (timeThisRound, pointThisRound);

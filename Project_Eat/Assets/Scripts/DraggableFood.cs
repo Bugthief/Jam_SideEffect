@@ -11,7 +11,7 @@ public class DraggableFood : MonoBehaviour
     public GameObject ghostPrefab; // 虚影的预制体
     // public GameObject slot; // 槽位预制体游戏对象
     private GameObject ghost; // 虚影的实例
-    private bool isDragging = false; // 是否正在拖拽
+    public bool isDragging = false; // 是否正在拖拽
     private bool isLocked = false;// 是否锁定？-可否被拖动
 
     public bool isMoving = true;// 是否在随着传送带运动？
@@ -69,6 +69,7 @@ public class DraggableFood : MonoBehaviour
                 }
             }
         }
+        
 
         introTextBox.SetActive(IsMouseOverFood());
 

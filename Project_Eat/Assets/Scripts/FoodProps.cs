@@ -20,6 +20,8 @@ public class FoodProps : MonoBehaviour
     // 从foodKeyList中随机获取一个key，并打印
     void GetRandomFoodKey()
     {
+        if (gameObject.GetComponent<SpriteRenderer>().color.a == 0.5f) return;
+
         // 检查列表是否为空
         if (GameManager.Instance.FoodKeyList != null && GameManager.Instance.FoodKeyList.Count > 0)
         {

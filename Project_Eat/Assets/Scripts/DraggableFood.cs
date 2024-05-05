@@ -27,11 +27,12 @@ public class DraggableFood : MonoBehaviour
     private void Start()
     {
         targetCanvas.worldCamera = Camera.main;
+        introTextBox.SetActive(false);
     }
 
     void Update()
     {
-        if(!isLocked)
+        if (!isLocked)
         {
             if (isDragging)
             {
@@ -52,18 +53,18 @@ public class DraggableFood : MonoBehaviour
             // 抬起鼠标左键时
             if (Input.GetMouseButtonUp(0))
             {
-                
+
                 if (isDragging)
                 {
                     isDragging = false;
-                    
+
                     // 如果虚影在【槽位】->【餐盘】区域, 检测空的槽位，若有，则将源食物移动到第一个找到的空槽位中，并锁定
-                    if(IsGhostinPlate())
-                    {   
+                    if (IsGhostinPlate())
+                    {
                         MoveFoodintoSlot();
-                        
+
                     }
-                    
+
                     Destroy(ghost); // 无论是否重叠，松开鼠标都消除虚影
                 }
             }
@@ -78,23 +79,32 @@ public class DraggableFood : MonoBehaviour
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Collider2D[] colliders = Physics2D.OverlapPointAll(new Vector2(mousePosition.x, mousePosition.y));
-        foreach (Collider2D collider in colliders)
+
+        //foreach (Collider2D collider in colliders)
+        //{
+        //    if (collider.gameObject == gameObject)
+        //    {
+        //        return true;
+        //    }
+        //}
+        if (colliders.Length > 0)
         {
-            if (collider.gameObject == gameObject)
+            if (colliders[^1].gameObject == gameObject)
             {
                 return true;
             }
         }
+
         return false;
     }
 
-    
+
     void CreateGhost()
     {
         // 创建虚影
-
         ghost = Instantiate(gameObject, transform.position, Quaternion.identity);
         ghost.GetComponent<FoodProps>().thisFoodKey = foodKey;
+        ghost.tag = "ghost";
         ghost.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f); // 设置透明度为0.5
     }
 
@@ -120,7 +130,7 @@ public class DraggableFood : MonoBehaviour
 
     //             return true;
     //         }
-                
+
     //     }
     //     return false;
     // }
@@ -134,11 +144,11 @@ public class DraggableFood : MonoBehaviour
         Collider2D ghostCollider = ghost.GetComponent<BoxCollider2D>();
         Collider2D plateCollider = plate.GetComponent<BoxCollider2D>();
 
-        if(ghostCollider.IsTouching(plateCollider))
+        if (ghostCollider.IsTouching(plateCollider))
         {
             return true;
         }
-        
+
         return false;
     }
 
@@ -147,16 +157,16 @@ public class DraggableFood : MonoBehaviour
         GameObject plate = GameObject.FindGameObjectWithTag("plate");
         GameObject firstEmptySlot = plate.GetComponent<PlateManager>().EmptySlot();
 
-        if(firstEmptySlot != null)
+        if (firstEmptySlot != null)
         {
             // 检查餐盘是否有空槽位，若有，则将虚影的源食物移动到找到的第一个空的槽位中
             gameObject.transform.position = firstEmptySlot.transform.position;
             isMoving = false;// 解除运动状态，可被变换位置
             isLocked = true;// 锁定位置，不能被拖动
             canDestroy = false;// 不被传送带摧毁
-            
+
             PlateManager plateManager = FindObjectOfType<PlateManager>();
             plateManager.foodKeyList.Add(foodKey);
-        }  
+        }
     }
 }

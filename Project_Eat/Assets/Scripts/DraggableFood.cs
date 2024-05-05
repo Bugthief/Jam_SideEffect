@@ -104,7 +104,7 @@ public class DraggableFood : MonoBehaviour
         // 创建虚影
         ghost = Instantiate(gameObject, transform.position, Quaternion.identity);
         ghost.GetComponent<FoodProps>().thisFoodKey = foodKey;
-        ghost.tag = "ghost";
+        //ghost.tag = "ghost";
         ghost.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f); // 设置透明度为0.5
     }
 

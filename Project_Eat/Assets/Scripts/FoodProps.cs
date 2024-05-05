@@ -34,7 +34,7 @@ public class FoodProps : MonoBehaviour
             draggableFood.foodKey = thisFoodKey;
 
             // 打印所选的随机字符串
-            Debug.Log("Random Food is: " + thisFoodKey);
+            //Debug.Log("Random Food is: " + thisFoodKey);
         }
         else
         {

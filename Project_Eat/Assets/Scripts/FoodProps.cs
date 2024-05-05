@@ -65,11 +65,13 @@ public class FoodProps : MonoBehaviour
     {
         Food thisFood = GameManager.Instance.FoodDictionary[thisFoodKey];
 
+        string sideEffects = string.Join(", ", thisFood.SideEffectNameList);
+
         foodIntroTextBox.text =
             thisFood.FoodName + "\n" +
             thisFood.FoodDescription + "\n" +
             "分数： " + thisFood.FoodPoint + "\n" +
-            "时间： " + thisFood.FoodTime;
-
+            "时间： " + thisFood.FoodTime + "\n" +
+            "副作用： " + sideEffects;
     }
 }

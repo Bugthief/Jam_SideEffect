@@ -39,6 +39,7 @@ public class FoodManager : MonoBehaviour
             foreach (SideEffectTypeEnum sideEffectTypeEnum in effectThisRound)
             {
                 SideEffectManager.BuffEffect(sideEffectTypeEnum);
+                Debug.Log(sideEffectTypeEnum.ToString());
             }
 
             GeneralInfo.UpdatePointText(GameManager.Instance.currentPoint);

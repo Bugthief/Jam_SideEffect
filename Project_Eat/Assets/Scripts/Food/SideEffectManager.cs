@@ -12,8 +12,6 @@ public class SideEffectManager : MonoBehaviour
     public float PicaFoodA;
     public float NonPicaFoodA;
 
-    public List<SideEffectTypeEnum> currentEffectList;
-
     public bool isVeganBuffed = false;
     public bool isCarnivore = false;
 
@@ -22,12 +20,15 @@ public class SideEffectManager : MonoBehaviour
     public GameObject effectIconPrefab;
     public Transform effectIconParentTransform;
 
+    public GameObject effectWarningPrefab;
+    public Transform effectWarningParentTransform;
+
     //public GameObject
 
 
     private void Start()
     {
-        speedA = GameManager.Instance.speedA; 
+        speedA = GameManager.Instance.speedA;
         pointA = GameManager.Instance.pointA;
 
         PicaFoodA = 1f;
@@ -46,17 +47,21 @@ public class SideEffectManager : MonoBehaviour
         time /= speedA;
         point *= pointA;
 
+        Debug.Log(food.FoodName + " 分数： " + point + "时间： " + time);
+
         return (time, point);
     }
 
     public void BuffEffect(SideEffectTypeEnum sideEffectTypeEnum)
     {
-        if (!currentEffectList.Contains(sideEffectTypeEnum))
+        if (GameManager.Instance.SideEffectDictionary[sideEffectTypeEnum].IconGameObject == null)
         {
-            currentEffectList.Add(sideEffectTypeEnum);
             GenerateEffectIcon(sideEffectTypeEnum);
         }
-        
+        else
+        {
+            UpdateEffectIcon(sideEffectTypeEnum);
+        }
 
         SideEffect thisSideEffect = GameManager.Instance.SideEffectDictionary[sideEffectTypeEnum];
         thisSideEffect.AddSideEffectCount();
@@ -139,17 +144,20 @@ public class SideEffectManager : MonoBehaviour
 
     public void GenerateEffectIcon(SideEffectTypeEnum sideEffectTypeEnum)
     {
-        GameObject newSideEffectObject = Instantiate(effectIconPrefab, effectIconParentTransform);
-        GameObject TextContainer = newSideEffectObject.transform.GetChild(0).GetChild(0).gameObject;
-        TextContainer.GetComponent<TMP_Text>().text = sideEffectTypeEnum.ToString();
+        GameObject newSideEffectIconObject = Instantiate(effectIconPrefab, effectIconParentTransform);
+        GameManager.Instance.SideEffectDictionary[sideEffectTypeEnum].SetIconGameObject(newSideEffectIconObject);
 
+        newSideEffectIconObject.GetComponent<SideEffectIcon>().thisSideEffectKey = sideEffectTypeEnum;
+        newSideEffectIconObject.GetComponent<SideEffectIcon>().UpdateSideEffectIntroText();
 
-        //assign the icon gameobject to the SideEffectClass
+        GameObject newSideEffectWarningObject = Instantiate(effectWarningPrefab, effectWarningParentTransform);
+
+        newSideEffectWarningObject.GetComponent<SideEffectWarning>().UpdateSideEffectWarningText(sideEffectTypeEnum);
     }
 
     public void UpdateEffectIcon(SideEffectTypeEnum sideEffectTypeEnum)
     {
-        //update the text
+        GameManager.Instance.SideEffectDictionary[sideEffectTypeEnum].IconGameObject.GetComponent<SideEffectIcon>().UpdateSideEffectIntroText();
     }
 
     public void EffectAnger(SideEffect sideEffect)

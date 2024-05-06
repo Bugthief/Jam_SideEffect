@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
     public bool isCoutingDown = false;
     public float currentTime;
     public float maxTime;
+    public float timeLeft;// 剩余时间
+
+    public GameObject timeProgressBar;// 剩余时间的进度条
 
     public GeneralInfo generalInfo;
 
@@ -15,6 +19,8 @@ public class TimeManager : MonoBehaviour
         isCoutingDown = true;
         currentTime = startTime;
         maxTime = endTime;
+
+        timeProgressBar.GetComponent<Slider>().maxValue = maxTime;// 最大时间值同步给时间进度条
     }
 
     public void Update()
@@ -23,10 +29,12 @@ public class TimeManager : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             GameManager.Instance.currentTime = currentTime;
-            float timeLeft = maxTime - currentTime;
+            timeLeft = maxTime - currentTime;
             generalInfo.UpdateTimeText(timeLeft);
 
-            if(currentTime >= maxTime)
+            TimeBar_GetTime();
+            
+            if (currentTime >= maxTime)
             {
                 isCoutingDown = false;
                 TimeOutFailure();
@@ -50,5 +58,10 @@ public class TimeManager : MonoBehaviour
     private void TimeOutFailure()
     {
 
+    }
+
+    void TimeBar_GetTime()
+    {
+        timeProgressBar.GetComponent<Slider>().value = timeLeft;
     }
 }

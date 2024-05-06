@@ -108,6 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sideEffectIntro: {fileID: 3821848564517526177}
   thisSideEffectKey: 0
+  sideEffectTextBoxObject: {fileID: 3821848564095368868}
+  sideEffectTextBoxParent: {fileID: 0}
 --- !u!1 &3821848564095368868
 GameObject:
   m_ObjectHideFlags: 0

@@ -1693,7 +1693,7 @@ GameObject:
   - component: {fileID: 322139816}
   - component: {fileID: 322139818}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Effect Icon Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2078,6 +2078,7 @@ MonoBehaviour:
   timeManager: {fileID: 39403790}
   effectIconPrefab: {fileID: 3821848563857358424, guid: f3d70cb6b10234d418b94d9719015d0e, type: 3}
   effectIconParentTransform: {fileID: 322139815}
+  effectTextBoxParentTransform: {fileID: 1360616327}
   effectWarningPrefab: {fileID: 9061296008691649513, guid: 4e15a03bee6e3e048b7f76603164d1c0, type: 3}
   effectWarningParentTransform: {fileID: 901404662}
 --- !u!4 &566165689
@@ -2527,6 +2528,7 @@ MonoBehaviour:
   slot_1_transform: {fileID: 1122130513}
   slot_2_transform: {fileID: 1385678072}
   foodManager: {fileID: 2100072217}
+  eatingTime: 0
 --- !u!1 &717864305
 GameObject:
   m_ObjectHideFlags: 0
@@ -4842,6 +4844,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lyhh: 0
+--- !u!1 &1360616326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1360616327}
+  m_Layer: 5
+  m_Name: Effect Text Box Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1360616327
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360616326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1987069896}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1363810303
 GameObject:
   m_ObjectHideFlags: 0
@@ -6555,6 +6593,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 322139815}
+  - {fileID: 1360616327}
   m_Father: {fileID: 1461250251}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

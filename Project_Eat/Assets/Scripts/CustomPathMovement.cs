@@ -52,7 +52,7 @@ public class CustomPathMovement : MonoBehaviour
     IEnumerator MoveObjectAlongCustomPath(GameObject obj)
     {
         float startTime = Time.time;
-
+        
         for (int i = 1; i < pathPoints.Count; i++)
         {
             Vector3 startPos = pathPoints[i - 1].position;
@@ -67,7 +67,7 @@ public class CustomPathMovement : MonoBehaviour
                 if (isDragMode)
                 {
                     // 若在运动状态，则随着传送带路径移动
-                    if (obj.GetComponent<DraggableFood>().isMoving)
+                    if (obj != null && obj.GetComponent<DraggableFood>().isMoving)
                     {
                         obj.transform.position = newPosition;
                     }
@@ -76,7 +76,7 @@ public class CustomPathMovement : MonoBehaviour
                 else
                 {
                     // 若在运动状态，则随着传送带路径移动
-                    if (obj.GetComponent<ClickableFood>().isMoving)
+                    if (obj != null && obj.GetComponent<ClickableFood>().isMoving)
                     {
                         obj.transform.position = newPosition;
                     }
@@ -92,7 +92,7 @@ public class CustomPathMovement : MonoBehaviour
         if (isDragMode)
         {
             // 移动完成后销毁预制体
-            if (obj.GetComponent<DraggableFood>().canDestroy)
+            if (obj != null && obj.GetComponent<DraggableFood>().canDestroy)
             {
                 // 如果在拖拽状态，获得虚影对象，销毁
                 DestroyDraggingGhost();
@@ -106,7 +106,7 @@ public class CustomPathMovement : MonoBehaviour
         else
         {
             // 移动完成后销毁预制体
-            if (obj.GetComponent<ClickableFood>().canDestroy)
+            if (obj != null && obj.GetComponent<ClickableFood>().canDestroy)
             {
 
                 Destroy(obj);
@@ -125,7 +125,7 @@ public class CustomPathMovement : MonoBehaviour
         {
             // 获取鼠标位置
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
+
             // 检查是否有物体被拖拽
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
             if (hit.collider != null)
@@ -135,7 +135,7 @@ public class CustomPathMovement : MonoBehaviour
                 {
                     // 摧毁对象
                     Destroy(hit.collider.gameObject);
-                    
+
                     return;
                 }
             }

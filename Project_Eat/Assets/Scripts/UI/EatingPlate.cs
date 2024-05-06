@@ -13,6 +13,8 @@ public class EatingPlate : MonoBehaviour
 
     public FoodManager foodManager;
 
+    private Coroutine eatingCoroutine;
+
     private void Start()
     {
         foodManager.OnEatingStatusChanged += EatingStatusChanged;
@@ -24,6 +26,11 @@ public class EatingPlate : MonoBehaviour
         {
             Destroy(eating_1);
             Destroy(eating_2);
+
+            if (eatingCoroutine != null)
+            {
+                StopCoroutine(eatingCoroutine);
+            }
         }
     }
 
@@ -34,5 +41,23 @@ public class EatingPlate : MonoBehaviour
 
         food_1.transform.position = slot_1_transform.position;
         food_2.transform.position = slot_2_transform.position;
+
+    }
+
+    public IEnumerator PerformEating(float eatingTime)
+    {
+        float quarterTime = eatingTime / 4f;
+
+        yield return new WaitForSeconds(quarterTime);
+        eating_1.GetComponent<AssignFoodImage>().LoadHalfFoodImage();
+
+        yield return new WaitForSeconds(quarterTime);
+        eating_2.GetComponent<AssignFoodImage>().LoadHalfFoodImage();
+
+        yield return new WaitForSeconds(quarterTime);
+        eating_1.GetComponent<AssignFoodImage>().LoadEmptyFoodImage();
+
+        yield return new WaitForSeconds(quarterTime);
+        //eating_2.GetComponent<AssignFoodImage>().LoadEmptyFoodImage();
     }
 }

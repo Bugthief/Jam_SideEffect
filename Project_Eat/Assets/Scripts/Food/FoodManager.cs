@@ -12,6 +12,8 @@ public class FoodManager : MonoBehaviour
     public event Action<bool> OnEatingStatusChanged;
     private bool isEating;
 
+    public EatingPlate eatingPlate;
+
     public bool IsEating
     {
         get { return isEating; }
@@ -29,6 +31,8 @@ public class FoodManager : MonoBehaviour
 
         // Calculate the time and point from those food
         (float timeThisRound, float pointThisRound) = CalculateFoodList(foodKeyList);
+
+        eatingPlate.StartCoroutine(eatingPlate.PerformEating(timeThisRound));
 
         // Start the SpendingTime coroutine and execute the remaining code after the coroutine completes
         StartCoroutine(SpendingTime(timeThisRound, () =>

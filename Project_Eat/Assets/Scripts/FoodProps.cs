@@ -8,6 +8,7 @@ public class FoodProps : MonoBehaviour
 {
     public string thisFoodKey;
     public TMP_Text foodIntroTextBox;
+    public AssignFoodImage assignFoodImage;
 
     public DraggableFood draggableFood;
 
@@ -15,6 +16,8 @@ public class FoodProps : MonoBehaviour
     {
         GetRandomFoodKey();
         UpdateHoverUI();
+
+        assignFoodImage = FindObjectOfType<AssignFoodImage>();
     }
 
     // 从foodKeyList中随机获取一个key，并打印
@@ -32,6 +35,7 @@ public class FoodProps : MonoBehaviour
             thisFoodKey = GameManager.Instance.FoodKeyList[randomIndex];
 
             draggableFood.foodKey = thisFoodKey;
+            assignFoodImage.LoadFullFoodImage(thisFoodKey);
 
             // 打印所选的随机字符串
             //Debug.Log("Random Food is: " + thisFoodKey);

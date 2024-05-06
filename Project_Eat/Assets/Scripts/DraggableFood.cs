@@ -84,10 +84,6 @@ public class DraggableFood : MonoBehaviour
                 introTextBox.SetActive(false);
             }
         }
-
-
-        
-
     }
 
     // 检测鼠标是否在食物上
@@ -123,7 +119,7 @@ public class DraggableFood : MonoBehaviour
         ghost = Instantiate(gameObject, transform.position, Quaternion.identity);
         ghost.GetComponent<FoodProps>().thisFoodKey = foodKey;
         ghost.tag = "ghost";
-        ghost.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f); // 设置透明度为0.5
+        ghost.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f); // 设置透明度为0.5
     }
 
     // bool IsGhostinSlots()

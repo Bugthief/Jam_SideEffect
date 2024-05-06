@@ -10,7 +10,8 @@ public class CustomPathMovement : MonoBehaviour
     public float spawnInterval = 1f; // 生成间隔
     public float movementDuration = 5f; // 运动持续时间
 
-    public bool isDragMode;
+    public bool isDragMode;// 是否是拖拽模式（拖拽/点击以移动食物）
+    public bool randomColorForFood = false;
 
     private void Start()
     {
@@ -24,6 +25,12 @@ public class CustomPathMovement : MonoBehaviour
         {
             // 在起点生成预制体
             GameObject newObject = Instantiate(prefabToSpawn, pathPoints[0].position, Quaternion.identity);
+
+            if(randomColorForFood)
+            {
+                // 为每个食物生成一个随机颜色
+                newObject.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
+            }
 
             // 启动预制体运动协程
             StartCoroutine(MoveObjectAlongCustomPath(newObject));

@@ -57,7 +57,7 @@ public class TimeManager : MonoBehaviour
 
     private void TimeOutFailure()
     {
-
+        GameManager.Instance.TimeOutFailure();
     }
 
     void TimeBar_GetTime()

@@ -197,7 +197,7 @@ public class SideEffectManager : MonoBehaviour
             case 3:
                 if (GameManager.Instance.SideEffectDictionary[SideEffectTypeEnum.Shining] != null && GameManager.Instance.SideEffectDictionary[SideEffectTypeEnum.Shining].SideEffectCount > 0)
                 {
-                    //success
+                    
                 }
                 else
                 {

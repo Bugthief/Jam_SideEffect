@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 显示得分相关UI、重置得分
+// 暂停时间、显示得分相关UI、重置得分
 public class Rating : MonoBehaviour
 {
 
@@ -23,10 +23,12 @@ public class Rating : MonoBehaviour
         if (isGameOver)
         {
             showEndingUI();
+            Time.timeScale = 0f;
         }
         else
         {
             hideEndingUI();
+            Time.timeScale = 1f;
         }
     }
 

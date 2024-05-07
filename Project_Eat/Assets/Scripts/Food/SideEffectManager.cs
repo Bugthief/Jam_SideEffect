@@ -43,8 +43,8 @@ public class SideEffectManager : MonoBehaviour
         //pointA = GameManager.Instance.pointA;
         pointB = GameManager.Instance.pointB;
 
-        PicaFoodB = 1f;
-        NonPicaFoodb = 1f;
+        PicaFoodB = 0f;
+        NonPicaFoodb = 0f;
 
     }
 
@@ -198,7 +198,7 @@ public class SideEffectManager : MonoBehaviour
             case 3:
                 if (GameManager.Instance.SideEffectDictionary[SideEffectTypeEnum.Shining] != null && GameManager.Instance.SideEffectDictionary[SideEffectTypeEnum.Shining].SideEffectCount > 0)
                 {
-                    
+
                 }
                 else
                 {

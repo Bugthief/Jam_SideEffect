@@ -74,7 +74,7 @@ public class NextPlateInfo : MonoBehaviour
 
         if (count != 0)
         {
-            fullText += "副作用： " + sideEffects;
+            fullText += "副作用: " + sideEffects;
         }
 
         textBox.text = fullText;
@@ -89,5 +89,10 @@ public class NextPlateInfo : MonoBehaviour
 
         string displayText = valueType + ": " + originalValue + " " + comparison + " " + difference;
         return displayText;
+    }
+
+    public void FinishEatingInfo()
+    {
+        textBox.text = "暂无";
     }
 }

@@ -26,7 +26,7 @@ public class CustomPathMovement : MonoBehaviour
             // 在起点生成预制体
             GameObject newObject = Instantiate(prefabToSpawn, pathPoints[0].position, Quaternion.identity);
 
-            if (randomColorForFood)
+            if(randomColorForFood)
             {
                 // 为每个食物生成一个随机颜色
                 newObject.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
@@ -52,12 +52,10 @@ public class CustomPathMovement : MonoBehaviour
     IEnumerator MoveObjectAlongCustomPath(GameObject obj)
     {
         float startTime = Time.time;
-
+        
         for (int i = 1; i < pathPoints.Count; i++)
         {
             Vector3 startPos = pathPoints[i - 1].position;
-
-
             Vector3 endPos = pathPoints[i].position;
 
             while (Time.time - startTime < movementDuration)
@@ -97,7 +95,6 @@ public class CustomPathMovement : MonoBehaviour
             if (obj != null && obj.GetComponent<DraggableFood>().canDestroy)
             {
                 // 如果在拖拽状态，获得虚影对象，销毁
-                Debug.Log("destroyed");
                 DestroyDraggingGhost();
 
                 // 销毁食物

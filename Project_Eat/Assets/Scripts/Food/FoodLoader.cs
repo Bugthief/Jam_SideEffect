@@ -26,7 +26,7 @@ public class FoodLoader : MonoBehaviour
             if (string.IsNullOrEmpty(line))
                 continue;
 
-            string[] fields = line.Split(',');
+            string[] fields = line.Split('|');
 
 
             string foodKey = fields[0];

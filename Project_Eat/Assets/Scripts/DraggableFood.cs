@@ -8,7 +8,7 @@ public class DraggableFood : MonoBehaviour
     // public GameObject slot; // 槽位预制体游戏对象
     public GameObject ghost; // 虚影的实例
     public bool isDragging = false; // 是否正在拖拽
-    private bool isLocked = false;// 是否锁定？-可否被拖动
+    public bool isLocked = false;// 是否锁定？-可否被拖动
 
     public bool isMoving = true;// 是否在随着传送带运动？
 

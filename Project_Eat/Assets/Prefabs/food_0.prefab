@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: 1209904417}
   - component: {fileID: 8472950010653765754}
   - component: {fileID: 1256205446}
+  - component: {fileID: 1370498684782062692}
   m_Layer: 0
   m_Name: food_0
   m_TagString: Untagged
@@ -450,6 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghost: {fileID: 0}
   isDragging: 0
+  isLocked: 0
   isMoving: 1
   canDestroy: 1
   introTextBox: {fileID: 292006641}
@@ -549,3 +551,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisFoodKey: 
   spriteRenderer: {fileID: 0}
+--- !u!114 &1370498684782062692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6948863100434220838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854e773a4197bd94dbdc7151e9d278d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorArrow: {fileID: 2800000, guid: c17d20f69ffb7104592f1beb0328cd5b, type: 3}
+  toPick: {fileID: 2800000, guid: 64d7a54a4ce1c0345ada1eb1b98dffd1, type: 3}
+  drag: {fileID: 2800000, guid: 02856e00e8c842e4fad221f951354f86, type: 3}
+  isFood: 1

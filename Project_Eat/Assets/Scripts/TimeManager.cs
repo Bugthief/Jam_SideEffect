@@ -60,7 +60,7 @@ public class TimeManager : MonoBehaviour
         EndManager endManager = FindObjectOfType<EndManager>();
         if (endManager != null )
         {
-            endManager.FailByTime(currentTime, GameManager.Instance.maxTime);
+            endManager.FailByTime(GameManager.Instance.currentPoint, GameManager.Instance.maxPoint);
         }
     }
 

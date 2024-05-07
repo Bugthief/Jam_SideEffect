@@ -3218,7 +3218,7 @@ MonoBehaviour:
   currentTime: 0
   maxTime: 300
   currentPoint: 0
-  maxPoint: 10
+  maxPoint: 90
   pointA: 1
   pointB: 0
   timeA: 1

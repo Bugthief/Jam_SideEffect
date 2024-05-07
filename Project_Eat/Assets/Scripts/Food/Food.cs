@@ -85,6 +85,8 @@ public class Food
         Numb,
         Pica,
         Shining,
-        Carnivore
+        Carnivore,
+        OnePlusOne,
+        Urinary
     }
 }

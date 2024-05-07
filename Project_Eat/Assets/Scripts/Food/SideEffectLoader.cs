@@ -23,7 +23,7 @@ public class SideEffectLoader : MonoBehaviour
             if (string.IsNullOrEmpty(line))
                 continue;
 
-            string[] fields = line.Split(',');
+            string[] fields = line.Split('|');
 
             SideEffect sideEffect = new SideEffect();
 

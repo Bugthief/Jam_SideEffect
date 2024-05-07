@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static Food;
 
 // 食物的key, 属性
 public class FoodProps : MonoBehaviour
 {
     public string thisFoodKey;
-    public TMP_Text foodIntroTextBox;
+    public TMP_Text foodNameText;
+    public TMP_Text foodDescriptionText;
+    public TMP_Text foodDetailsText;
     public AssignFoodImage assignFoodImage;
 
     public DraggableFood draggableFood;
@@ -69,13 +72,31 @@ public class FoodProps : MonoBehaviour
     {
         Food thisFood = GameManager.Instance.FoodDictionary[thisFoodKey];
 
-        string sideEffects = string.Join(", ", thisFood.SideEffectNameList);
+        string sideEffects = null;
 
-        foodIntroTextBox.text =
-            thisFood.FoodName + "\n" +
-            thisFood.FoodDescription + "\n" +
+        int count = thisFood.SideEffectNameList.Count;
+        for (int i = 0; i < count; i++)
+        {
+            SideEffectTypeEnum sideEffectTypeEnum = thisFood.SideEffectNameList[i];
+
+            sideEffects += GameManager.Instance.SideEffectDictionary[sideEffectTypeEnum].SideEffectName;
+
+            if (i < count - 1)
+            {
+                sideEffects += "，";
+            }
+        }
+
+        foodNameText.text = thisFood.FoodName;
+        foodDescriptionText.text = thisFood.FoodDescription;
+
+        foodDetailsText.text =
             "分数： " + thisFood.FoodPoint + "\n" +
-            "时间： " + thisFood.FoodTime + "\n" +
-            "副作用： " + sideEffects;
+            "时间： " + thisFood.FoodTime + "\n";
+
+        if (count != 0)
+        {
+            foodDetailsText.text += "副作用： " + sideEffects;
+        }
     }
 }

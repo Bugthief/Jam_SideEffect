@@ -149,6 +149,8 @@ public class SideEffectManager : MonoBehaviour
         GameObject newSideEffectIconObject = Instantiate(effectIconPrefab, effectIconParentTransform);
         GameManager.Instance.SideEffectDictionary[sideEffectTypeEnum].SetIconGameObject(newSideEffectIconObject);
 
+        newSideEffectIconObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Arts/Side Effects Icon/" + sideEffectTypeEnum.ToString());
+
         newSideEffectIconObject.GetComponent<SideEffectIcon>().thisSideEffectKey = sideEffectTypeEnum;
         newSideEffectIconObject.GetComponent<SideEffectIcon>().UpdateSideEffectIntroText();
         newSideEffectIconObject.GetComponent<SideEffectIcon>().sideEffectTextBoxParent = effectTextBoxParentTransform;

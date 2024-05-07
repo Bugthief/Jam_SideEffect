@@ -14,8 +14,8 @@ public class DraggableFood : MonoBehaviour
     public bool isLocked = false;// 是否锁定？-可否被拖动
 
     public bool isMoving = true;// 是否在随着传送带运动？
-
     public bool canDestroy = true;// 可否销毁
+    public bool isEating = false;
 
     public GameObject introTextBox; //食物信息界面对象
     public Canvas targetCanvas;
@@ -80,13 +80,19 @@ public class DraggableFood : MonoBehaviour
 
         if (gameObject.tag == "ghost")
         {
-            introTextBox.SetActive(IsMouseOverFood());
+            if (!isEating)
+            {
+                introTextBox.SetActive(IsMouseOverFood());
+            }
         }
         else
         {
             if (ghost == null)
             {
-                introTextBox.SetActive(IsMouseOverFood());
+                if(!isEating)
+                {
+                    introTextBox.SetActive(IsMouseOverFood());
+                }
             }
             else
             {

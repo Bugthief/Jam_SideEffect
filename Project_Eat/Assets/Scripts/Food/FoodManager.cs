@@ -32,7 +32,7 @@ public class FoodManager : MonoBehaviour
         // Calculate the time and point from those food
         (float timeThisRound, float pointThisRound) = CalculateFoodList(foodKeyList);
 
-        eatingPlate.StartCoroutine(eatingPlate.PerformEating(timeThisRound));
+        eatingPlate.eatingTime = timeThisRound;
 
         // Start the SpendingTime coroutine and execute the remaining code after the coroutine completes
         StartCoroutine(SpendingTime(timeThisRound, () =>

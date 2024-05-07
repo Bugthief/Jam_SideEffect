@@ -9,6 +9,11 @@ public class SideEffectIcon : MonoBehaviour
     public TMP_Text sideEffectIntro;
     public SideEffectTypeEnum thisSideEffectKey;
 
+    public GameObject sideEffectTextBoxObject;
+    public Transform sideEffectTextBoxParent;
+
+    bool IsMoved = false;
+
     public void UpdateSideEffectIntroText()
     {
         SideEffect thisSideEffect = GameManager.Instance.SideEffectDictionary[thisSideEffectKey];
@@ -20,4 +25,15 @@ public class SideEffectIcon : MonoBehaviour
             "ΩÈ…‹£∫ " + sideEffectDetail + "\n" +
             "≤„ ˝£∫ " + thisSideEffect.SideEffectCount;
     }
+
+    public void MoveTextBox()
+    {
+        sideEffectTextBoxObject.transform.SetParent(sideEffectTextBoxParent);
+    }
+
+    private void Update()
+    {
+        if (!IsMoved && HoverEffect.IsPointerOverUI(gameObject)) { MoveTextBox(); IsMoved = true; }
+    }
+
 }

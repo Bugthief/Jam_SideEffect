@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static Food;
 
 public class SideEffectManager : MonoBehaviour
@@ -19,6 +20,7 @@ public class SideEffectManager : MonoBehaviour
 
     public GameObject effectIconPrefab;
     public Transform effectIconParentTransform;
+    public Transform effectTextBoxParentTransform;
 
     public GameObject effectWarningPrefab;
     public Transform effectWarningParentTransform;
@@ -149,10 +151,12 @@ public class SideEffectManager : MonoBehaviour
 
         newSideEffectIconObject.GetComponent<SideEffectIcon>().thisSideEffectKey = sideEffectTypeEnum;
         newSideEffectIconObject.GetComponent<SideEffectIcon>().UpdateSideEffectIntroText();
+        newSideEffectIconObject.GetComponent<SideEffectIcon>().sideEffectTextBoxParent = effectTextBoxParentTransform;
 
         GameObject newSideEffectWarningObject = Instantiate(effectWarningPrefab, effectWarningParentTransform);
 
         newSideEffectWarningObject.GetComponent<SideEffectWarning>().UpdateSideEffectWarningText(sideEffectTypeEnum);
+
     }
 
     public void UpdateEffectIcon(SideEffectTypeEnum sideEffectTypeEnum)

@@ -4,26 +4,41 @@ using UnityEngine;
 
 public class EndManager : MonoBehaviour
 {
-    public GameObject endingPanel;
-    public Sprite fullStar;
-    public Sprite emptyStar;
-    public Sprite successLogo;
-    public Sprite failLogo;
+    public GameObject endPanel;
+    public GameObject fail1;
+    public GameObject fail2;
+    public GameObject fail3;
+    public GameObject win1;
 
-    public Sprite star1;
-    public Sprite star2;
-    public Sprite star3;
-    public Sprite logo;
+    public void FailByTime(float currentTime, float fullTime)
+    {
+        endPanel.SetActive(true);
+        float result = currentTime / fullTime;
 
-    public TimeManager timeManager;
-
-    public void GameSucceeded()
-    {   
-        timeManager.isCoutingDown = false;
+        if(0 < result  && result <= 1/3) 
+        {
+            fail1.SetActive(true);
+        }else if(1/3 < result && result <= 2/3)
+        {
+            fail2.SetActive(true);
+        }else if(2/3 < result &&result <= 3 / 3)
+        {
+            fail3.SetActive(true);
+        }
     }
 
-    public void TimeOutFailure()
+    public void WinTheGame()
     {
-        timeManager.isCoutingDown = false;
+        endPanel.SetActive(true);
+        win1.SetActive(true);
+    }
+
+    private void Start()
+    {
+        endPanel.SetActive(false);
+        fail1.SetActive(false);
+        fail2.SetActive(false);
+        fail3.SetActive(false);
+        win1.SetActive(false);
     }
 }

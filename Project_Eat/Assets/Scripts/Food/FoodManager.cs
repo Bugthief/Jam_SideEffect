@@ -64,7 +64,7 @@ public class FoodManager : MonoBehaviour
                 EndManager endManager = FindObjectOfType<EndManager>();
                 if(endManager != null)
                 {
-                    endManager.GameSucceeded();
+                    endManager.WinTheGame();
                 }
             }
 

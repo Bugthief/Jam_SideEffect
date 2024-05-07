@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, Food> FoodDictionary;
     public Dictionary<SideEffectTypeEnum, SideEffect> SideEffectDictionary;
 
-    public TimeManager TimeManager;
+    public TimeManager timeManager;
 
     public List<string> FoodKeyList;
 
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //Debug.Log("Hi");
-        TimeManager.StartCountDown(0f, maxTime);
+        timeManager.StartCountDown(0f, maxTime);
 
     }
 
@@ -70,27 +70,5 @@ public class GameManager : MonoBehaviour
         }
 
         return list;
-    }
-
-    public void GameSucceeded()
-    {
-        if (isWinning) return;
-
-        isWinning = true;
-    }
-
-    public void TimeOutFailure()
-    {
-
-    }
-
-    public void UprisingSucceeded()
-    {
-
-    }
-
-    public void UprisingFailed()
-    {
-
     }
 }

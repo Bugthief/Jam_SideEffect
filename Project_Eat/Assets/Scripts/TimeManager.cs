@@ -57,7 +57,11 @@ public class TimeManager : MonoBehaviour
 
     private void TimeOutFailure()
     {
-        GameManager.Instance.TimeOutFailure();
+        EndManager endManager = FindObjectOfType<EndManager>();
+        if (endManager != null )
+        {
+            endManager.TimeOutFailure();
+        }
     }
 
     void TimeBar_GetTime()

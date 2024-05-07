@@ -59,6 +59,15 @@ public class FoodManager : MonoBehaviour
             // This code will be executed after the SpendingTime coroutine completes
             GameManager.Instance.currentPoint += pointThisRound;
 
+            if(GameManager.Instance.currentPoint >= GameManager.Instance.maxPoint)
+            {
+                EndManager endManager = FindObjectOfType<EndManager>();
+                if(endManager != null)
+                {
+                    endManager.GameSucceeded();
+                }
+            }
+
             List<SideEffectTypeEnum> effectThisRound = new List<SideEffectTypeEnum>();
 
             foreach (string foodKey in foodKeyList)

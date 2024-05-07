@@ -25,7 +25,7 @@ public class TimeManager : MonoBehaviour
 
     public void Update()
     {
-        if (isCoutingDown)
+        if (isCoutingDown && GameManager.Instance != null)
         {
             currentTime += Time.deltaTime;
             GameManager.Instance.currentTime = currentTime;
@@ -33,7 +33,7 @@ public class TimeManager : MonoBehaviour
             generalInfo.UpdateTimeText(timeLeft);
 
             TimeBar_GetTime();
-            
+
             if (currentTime >= maxTime)
             {
                 isCoutingDown = false;

@@ -45,7 +45,6 @@ public class SideEffectManager : MonoBehaviour
         PicaFoodB = 1f;
         NonPicaFoodb = 1f;
 
-        //test
     }
 
     public (float, float) CalculateUnderEffect(Food food)

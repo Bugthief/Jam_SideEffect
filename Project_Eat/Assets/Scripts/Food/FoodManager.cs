@@ -77,9 +77,6 @@ public class FoodManager : MonoBehaviour
                 Debug.Log(sideEffectTypeEnum.ToString());
             }
 
-            SideEffectManager.BuffEffect(SideEffectTypeEnum.Excited);
-            SideEffectManager.BuffEffect(SideEffectTypeEnum.Excited);
-
             GeneralInfo.UpdatePointText(GameManager.Instance.currentPoint);
 
             StartCoroutine(SpedingMoreTime(timeByEffect));

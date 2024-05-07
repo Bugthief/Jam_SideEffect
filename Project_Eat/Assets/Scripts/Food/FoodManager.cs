@@ -24,6 +24,7 @@ public class FoodManager : MonoBehaviour
     public GameObject plate_Eating;
     public GameObject plate_Waiting;
 
+    public float timeByEffect;
 
     private void Update()
     {
@@ -45,6 +46,7 @@ public class FoodManager : MonoBehaviour
     public void EatFoodList(List<string> foodKeyList)
     {
         IsEating = true;
+        timeByEffect = 0f;
 
         // Calculate the time and point from those food
         (float timeThisRound, float pointThisRound) = CalculateFoodList(foodKeyList);
@@ -77,7 +79,7 @@ public class FoodManager : MonoBehaviour
 
             GeneralInfo.UpdatePointText(GameManager.Instance.currentPoint);
 
-            IsEating = false;
+            StartCoroutine(SpedingMoreTime(timeByEffect));
         }));
     }
 
@@ -87,6 +89,12 @@ public class FoodManager : MonoBehaviour
 
         // Call the onComplete action when the coroutine completes
         onComplete?.Invoke();
+    }
+
+    public IEnumerator SpedingMoreTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        IsEating = false;
     }
 
     //calculate the point and time with effect and speed
@@ -122,7 +130,7 @@ public class FoodManager : MonoBehaviour
             // 在吃的
             eatingFood_1.transform.parent = parent_Eating.transform;
             eatingFood_2.transform.parent = parent_Eating.transform;
-            print("go in Eating!!!!!!");
+            //print("go in Eating!!!!!!");
         }
         
         if (waitingFood_1 != null)
@@ -130,7 +138,7 @@ public class FoodManager : MonoBehaviour
             // 下一盘要吃的
             waitingFood_1.transform.parent = parent_Waiting.transform;
             
-            print("1 go in Waiting!!!!!!");
+            //print("1 go in Waiting!!!!!!");
 
         }
 
@@ -139,7 +147,7 @@ public class FoodManager : MonoBehaviour
             // 下一盘要吃的
             waitingFood_2.transform.parent = parent_Waiting.transform;
             
-            print("2 go in Waiting!!!!!!");
+            //print("2 go in Waiting!!!!!!");
 
         }
     }

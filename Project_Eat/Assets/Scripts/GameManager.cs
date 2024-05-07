@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public float timeA;
     public float timeB;
 
+    public bool isWinning = false;
+
     public Dictionary<string, Food> FoodDictionary;
     public Dictionary<SideEffectTypeEnum, SideEffect> SideEffectDictionary;
 
@@ -62,11 +64,33 @@ public class GameManager : MonoBehaviour
     {
         List<string> list = new List<string>();
 
-        foreach(string key in dictionary.Keys)
+        foreach (string key in dictionary.Keys)
         {
             list.Add(key);
         }
 
         return list;
+    }
+
+    public void GameSucceeded()
+    {
+        if (isWinning) return;
+
+        isWinning = true;
+    }
+
+    public void TimeOutFailure()
+    {
+
+    }
+
+    public void UprisingSucceeded()
+    {
+
+    }
+
+    public void UprisingFailed()
+    {
+
     }
 }

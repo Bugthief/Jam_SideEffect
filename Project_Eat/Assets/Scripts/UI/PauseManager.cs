@@ -32,7 +32,7 @@ public class PauseManager : MonoBehaviour
     public void MainMenu()
     {
         // 返回开始菜单
-        //GameManager.Instance.DestroyInstance();
+        GameManager.DestroyInstance();
         SceneManager.LoadScene(sceneName_MainMenu);
     }
 }

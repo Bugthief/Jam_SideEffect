@@ -20,7 +20,7 @@ public class TimeManager : MonoBehaviour
         currentTime = startTime;
         maxTime = endTime;
 
-        timeProgressBar.GetComponent<Slider>().maxValue = maxTime;// 最大时间值同步给时间进度条
+        //timeProgressBar.GetComponent<Slider>().maxValue = maxTime;// 最大时间值同步给时间进度条
     }
 
     public void Update()
@@ -30,9 +30,9 @@ public class TimeManager : MonoBehaviour
             currentTime += Time.deltaTime;
             GameManager.Instance.currentTime = currentTime;
             timeLeft = maxTime - currentTime;
-            generalInfo.UpdateTimeText(timeLeft);
+            generalInfo.UpdateTimeImage(timeLeft);
 
-            TimeBar_GetTime();
+            //TimeBar_GetTime();
 
             if (currentTime >= maxTime)
             {

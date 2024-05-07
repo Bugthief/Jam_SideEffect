@@ -86,7 +86,7 @@ public class FoodManager : MonoBehaviour
                 Debug.Log(sideEffectTypeEnum.ToString());
             }
 
-            GeneralInfo.UpdatePointText(GameManager.Instance.currentPoint);
+            GeneralInfo.UpdatePointImage(GameManager.Instance.currentPoint);
 
             StartCoroutine(SpedingMoreTime(timeByEffect));
         }));

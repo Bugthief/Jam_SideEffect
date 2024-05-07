@@ -7227,7 +7227,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.37169808, b: 0.37169808, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7642,6 +7642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2100072216}
   - component: {fileID: 2100072217}
+  - component: {fileID: 2100072218}
   m_Layer: 0
   m_Name: Food Manager
   m_TagString: Untagged
@@ -7679,6 +7680,18 @@ MonoBehaviour:
   SideEffectManager: {fileID: 566165688}
   GeneralInfo: {fileID: 1300896567}
   eatingPlate: {fileID: 689405615}
+--- !u!114 &2100072218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100072215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e022edc9ed99f1a45ac3934eaaa39536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2106558868
 PrefabInstance:
   m_ObjectHideFlags: 0

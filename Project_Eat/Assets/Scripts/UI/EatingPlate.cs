@@ -51,6 +51,15 @@ public class EatingPlate : MonoBehaviour
         }
 
         eatingCoroutine = StartCoroutine(PerformEating(eatingTime));
+
+        List<string> foodKeyList = new List<string>
+        {
+            key1,
+            key2
+        };
+
+        NextPlateInfo nextPlateInfo = FindAnyObjectByType<NextPlateInfo>();
+        nextPlateInfo.GenerateNextPlateInfo(foodKeyList);
     }
 
     public IEnumerator PerformEating(float eatingTime)

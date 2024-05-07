@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
     public float maxPoint;
 
     public float pointA;
-    public float speedA;
+    public float pointB;
+    public float timeA;
+    public float timeB;
 
     public Dictionary<string, Food> FoodDictionary;
     public Dictionary<SideEffectTypeEnum, SideEffect> SideEffectDictionary;

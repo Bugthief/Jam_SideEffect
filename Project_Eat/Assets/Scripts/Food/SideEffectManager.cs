@@ -7,11 +7,13 @@ using static Food;
 
 public class SideEffectManager : MonoBehaviour
 {
-    public float speedA;
-    public float pointA;
+    public float timeA;
+    public float timeB;
+    //public float pointA;
+    public float pointB;
 
-    public float PicaFoodA;
-    public float NonPicaFoodA;
+    public float PicaFoodB;
+    public float NonPicaFoodb;
 
     public bool isVeganBuffed = false;
     public bool isCarnivore = false;
@@ -27,16 +29,22 @@ public class SideEffectManager : MonoBehaviour
 
     public ChangeSideEffectBar changeSideEffectBar;
 
-    //public GameObject
-
 
     private void Start()
     {
-        speedA = GameManager.Instance.speedA;
-        pointA = GameManager.Instance.pointA;
+        timeA = GameManager.Instance.timeA;
+        timeB = GameManager.Instance.timeB;
 
-        PicaFoodA = 1f;
-        NonPicaFoodA = 1f;
+        //pointA = GameManager.Instance.pointA;
+        pointB = GameManager.Instance.pointB;
+
+        PicaFoodB = 1f;
+        NonPicaFoodb = 1f;
+
+        //test
+        BuffEffect(SideEffectTypeEnum.Anger);
+        BuffEffect(SideEffectTypeEnum.Anger);
+        BuffEffect(SideEffectTypeEnum.Anger);
     }
 
     public (float, float) CalculateUnderEffect(Food food)
@@ -48,8 +56,8 @@ public class SideEffectManager : MonoBehaviour
         point = CheckPica(food, point);
         CheckCarnivore(food);
 
-        time /= speedA;
-        point *= pointA;
+        time = time * timeA + timeB;
+        point += pointB;
 
         Debug.Log(food.FoodName + " 分数： " + point + "时间： " + time);
 
@@ -58,6 +66,9 @@ public class SideEffectManager : MonoBehaviour
 
     public void BuffEffect(SideEffectTypeEnum sideEffectTypeEnum)
     {
+        SideEffect thisSideEffect = GameManager.Instance.SideEffectDictionary[sideEffectTypeEnum];
+        thisSideEffect.AddSideEffectCount();
+
         if (GameManager.Instance.SideEffectDictionary[sideEffectTypeEnum].IconGameObject == null)
         {
             GenerateEffectIcon(sideEffectTypeEnum);
@@ -66,9 +77,6 @@ public class SideEffectManager : MonoBehaviour
         {
             UpdateEffectIcon(sideEffectTypeEnum);
         }
-
-        SideEffect thisSideEffect = GameManager.Instance.SideEffectDictionary[sideEffectTypeEnum];
-        thisSideEffect.AddSideEffectCount();
 
         switch (sideEffectTypeEnum)
         {
@@ -176,10 +184,10 @@ public class SideEffectManager : MonoBehaviour
         switch (sideEffect.SideEffectCount)
         {
             case 1:
-                speedA *= 1.05f;
+                timeA *= 0.85f;
                 return;
             case 2:
-                speedA *= 1.1f;
+                //timeA *= 0.9f;
                 return;
             case 3:
                 if (GameManager.Instance.SideEffectDictionary[SideEffectTypeEnum.Shining] != null && GameManager.Instance.SideEffectDictionary[SideEffectTypeEnum.Shining].SideEffectCount > 0)
@@ -196,27 +204,23 @@ public class SideEffectManager : MonoBehaviour
 
     public void EffectBloating(SideEffect sideEffect)
     {
-        pointA *= 0.98f;
+        timeA *= 0.85f;
     }
 
     public void EffectBurning(SideEffect sideEffect)
     {
         switch (sideEffect.SideEffectCount)
         {
-            case 1:
-                speedA *= 0.99f;
-                return;
-
-            case 2:
-                speedA *= 0.98f;
+            case <3:
+                timeA *= 0.95f;
                 return;
 
             case 3:
-                speedA *= 0.97f;
+                timeA *= 0.9f;
                 return;
+
             case > 3:
                 //stop eating for 10 seconds.
-                speedA *= 0.97f;
                 StartCoroutine(StopEating(10f));
                 return;
 
@@ -228,13 +232,13 @@ public class SideEffectManager : MonoBehaviour
         switch (sideEffect.SideEffectCount)
         {
             case 1:
-                speedA *= 1.05f;
+                timeA *= 0.9f;
                 return;
             case 2:
-                speedA *= 1.1f;
+                timeA *= 0.9f;
                 return;
             case 3:
-                GameManager.Instance.speedA /= 1.05f * 1.1f;
+                timeA /= 0.9f * 0.9f;
                 sideEffect.ClearSideEffectCound();
 
                 BuffEffect(SideEffectTypeEnum.Excited);
@@ -250,13 +254,11 @@ public class SideEffectManager : MonoBehaviour
     public void EffectElder(SideEffect sideEffect)
     {
         BlurTheFood(10f);
-        sideEffect.ClearSideEffectCound();
     }
 
     public void EffectExcited(SideEffect sideEffect)
     {
         StartCoroutine(StopEating(10f));
-        sideEffect.ClearSideEffectCound();
     }
 
     public void EffectImSick(SideEffect sideEffect)
@@ -264,12 +266,12 @@ public class SideEffectManager : MonoBehaviour
         switch (sideEffect.SideEffectCount)
         {
             case 1:
-                speedA *= 0.95f;
+                timeA *= 1.05f;
                 return;
 
             case 2:
-                speedA *= 0.95f;
-                pointA *= 0.95f;
+                timeA *= 1.05f;
+                pointB += 1f;
                 StartCoroutine(StopEating(10f));
                 return;
         }
@@ -281,7 +283,6 @@ public class SideEffectManager : MonoBehaviour
         {
             case 4:
 
-                //
                 return;
         }
     }
@@ -298,8 +299,8 @@ public class SideEffectManager : MonoBehaviour
 
     public void EffectPica(SideEffect sideEffect)
     {
-        PicaFoodA = Mathf.Pow(1.2f, sideEffect.SideEffectCount);
-        NonPicaFoodA = Mathf.Pow(0.9f, sideEffect.SideEffectCount);
+        PicaFoodB = sideEffect.SideEffectCount;
+        NonPicaFoodb = sideEffect.SideEffectCount * 0.5f;
     }
 
     public void EffectPungent(SideEffect sideEffect)
@@ -307,10 +308,10 @@ public class SideEffectManager : MonoBehaviour
         switch (sideEffect.SideEffectCount)
         {
             case 1:
-                speedA *= 0.98f;
+                timeA *= 1.05f;
                 return;
             case 2:
-                speedA *= 0.97f;
+                timeA *= 1.1f;
                 return;
             case > 2:
                 BuffEffect(SideEffectTypeEnum.ThrowUp);
@@ -326,8 +327,7 @@ public class SideEffectManager : MonoBehaviour
 
     public void EffectThrowUp(SideEffect sideEffect)
     {
-        pointA *= 0.98f;
-        GameManager.Instance.currentPoint -= 10f;
+        GameManager.Instance.currentPoint *= 0.8f;
     }
 
     public void EffectToxic(SideEffect sideEffect)
@@ -335,11 +335,11 @@ public class SideEffectManager : MonoBehaviour
         switch (sideEffect.SideEffectCount)
         {
             case 1:
-
+                
                 return;
             case 2:
-                speedA *= 0.98f;
-                pointA *= 1.1f;
+                timeA *= 0.85f;
+                pointB += 1f;
                 return;
             case > 2:
                 BuffEffect(SideEffectTypeEnum.ThrowUp);
@@ -349,7 +349,7 @@ public class SideEffectManager : MonoBehaviour
 
     public void EffectVegan(SideEffect sideEffect)
     {
-        //isVeganBuffed = true;
+        isVeganBuffed = true;
     }
 
     public void EffectCarnivore(SideEffect sideEffect)
@@ -390,12 +390,12 @@ public class SideEffectManager : MonoBehaviour
         if (food.FoodTypeList.Contains(FoodTypeEnum.Strange))
         {
             Debug.Log(food);
-            point *= PicaFoodA;
+            point += PicaFoodB;
         }
         else
         {
             Debug.Log(food);
-            point *= NonPicaFoodA;
+            point += NonPicaFoodb;
         }
 
         return point;

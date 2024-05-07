@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShaderManage : MonoBehaviour
 {
+    public bool inSideEffect = false;
     public bool lyhh = false;
     private void Update()
     {
@@ -17,9 +18,7 @@ public class ShaderManage : MonoBehaviour
             lyhh = false;
         }
 
-        if (lyhh)
-            LYHH();
-        else
+        if (!inSideEffect)
             Reset();
     }
 

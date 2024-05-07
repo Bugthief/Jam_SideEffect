@@ -13,6 +13,8 @@ public class Rating : MonoBehaviour
     public int rating_starNum;
 
 
+
+
     void Start()
     {
         ResetRating();
@@ -23,6 +25,8 @@ public class Rating : MonoBehaviour
         if (isGameOver)
         {
             showEndingUI();
+
+
         }
         else
         {

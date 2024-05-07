@@ -5098,9 +5098,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.9176471, b: 0, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.9513652, b: 0.40943396, a: 1}
-    m_PressedColor: {r: 0.3773585, g: 0.34628195, b: 0, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.65719914, g: 0.5529412, b: 0.8666667, a: 1}
+    m_PressedColor: {r: 0.7830189, g: 0.4764596, b: 0.75211304, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -8044,7 +8044,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MainMenu
+  m_text: "\u4E3B\u83DC\u5355"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d8e9d7180c19824478400e5582945c2b, type: 2}
   m_sharedMaterial: {fileID: -5136588329794685374, guid: d8e9d7180c19824478400e5582945c2b, type: 2}
@@ -8110,7 +8110,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1904973829

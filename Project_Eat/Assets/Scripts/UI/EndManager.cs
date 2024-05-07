@@ -10,12 +10,21 @@ public class EndManager : MonoBehaviour
     public GameObject fail3;
     public GameObject win1;
 
-    public void FailByTime(float currentTime, float fullTime)
+    public void FailByTime(float currentPoint, float maxPoint)
     {
         endPanel.SetActive(true);
-        float result = currentTime / fullTime;
 
-        if(0 < result  && result <= 1/3) 
+        if(currentPoint <= 0) 
+        {
+            fail1.SetActive(true);
+            return;
+        }
+
+
+        float result = currentPoint / maxPoint;
+
+        
+        if(result <= 1/3) 
         {
             fail1.SetActive(true);
         }else if(1/3 < result && result <= 2/3)

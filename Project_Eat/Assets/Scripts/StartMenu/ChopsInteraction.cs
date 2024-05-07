@@ -11,6 +11,9 @@ public class ChopsInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     public GameObject hands;
     public Vector3 originPosition;
 
+    public Animator chopAnimator;
+    public Animator handsAnimator;
+
 
     private void Start()
     {
@@ -24,7 +27,7 @@ public class ChopsInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     public void OnDrag(PointerEventData eventData)
     {
         // 拖拽时，筷子跟随鼠标，且到播放摇摆动画状态
-        gameObject.GetComponent<Animator>().SetBool("isGrabbing", true);
+        chopAnimator.SetBool("isGrabbing", true);
         // 拖动过程中调用
         transform.position = eventData.position;
         // 显示箭头动画
@@ -36,11 +39,11 @@ public class ChopsInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         // RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(eventData.position), Vector2.zero);
         // if (hit.collider != null && hit.collider.CompareTag("Hands"))
         // {
-        //     hands.GetComponent<Animator>().SetBool("isChopOver", true);
+        //     handsAnimator.SetBool("isChopOver", true);
         // }
         // else
         // {
-        //     hands.GetComponent<Animator>().SetBool("isChopOver", false);
+        //     handsAnimator.SetBool("isChopOver", false);
         // }
 
 
@@ -52,7 +55,7 @@ public class ChopsInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         // 隐藏箭头动画
         arrows.SetActive(false);
 
-        if (hands.GetComponent<Animator>().GetBool("isChopOver"))
+        if (handsAnimator.GetBool("isChopOver"))
         {
             // 显示角色选择，隐藏主选单
             main.SetActive(false);
@@ -67,27 +70,27 @@ public class ChopsInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         }
 
         // 还原摇摆、手部动画到Idle，切换场景
-        gameObject.GetComponent<Animator>().SetBool("isGrabbing", false);
-        hands.GetComponent<Animator>().SetBool("isChopOver", false);
+        chopAnimator.SetBool("isGrabbing", false);
+        handsAnimator.SetBool("isChopOver", false);
 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Collider: " + other.gameObject.name);
-        hands.GetComponent<Animator>().SetBool("isChopOver", true);
+        handsAnimator.SetBool("isChopOver", true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        hands.GetComponent<Animator>().SetBool("isChopOver", false);
+        handsAnimator.SetBool("isChopOver", false);
     }
 
     void Initialize()
     {
         // 初始化：筷子位置、筷子/手动画机状态
         transform.position = originPosition;
-        gameObject.GetComponent<Animator>().SetBool("isGrabbing", false);
-        hands.GetComponent<Animator>().SetBool("isChopOver", false);
+        chopAnimator.SetBool("isGrabbing", false);
+        handsAnimator.SetBool("isChopOver", false);
     }
 }

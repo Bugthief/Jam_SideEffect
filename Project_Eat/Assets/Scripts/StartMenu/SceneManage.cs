@@ -27,4 +27,10 @@ public class SceneManage : MonoBehaviour
         main.SetActive(true);
         characterSelect.SetActive(false);
     }
+
+    public void Quit()
+    {
+        // 退出游戏
+        Application.Quit();
+    }
 }

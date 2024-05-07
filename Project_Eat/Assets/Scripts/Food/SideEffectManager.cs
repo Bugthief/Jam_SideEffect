@@ -25,6 +25,8 @@ public class SideEffectManager : MonoBehaviour
     public GameObject effectWarningPrefab;
     public Transform effectWarningParentTransform;
 
+    public ChangeSideEffectBar changeSideEffectBar;
+
     //public GameObject
 
 
@@ -147,6 +149,9 @@ public class SideEffectManager : MonoBehaviour
     public void GenerateEffectIcon(SideEffectTypeEnum sideEffectTypeEnum)
     {
         GameObject newSideEffectIconObject = Instantiate(effectIconPrefab, effectIconParentTransform);
+
+        changeSideEffectBar.ChangeBackground();
+
         GameManager.Instance.SideEffectDictionary[sideEffectTypeEnum].SetIconGameObject(newSideEffectIconObject);
 
         newSideEffectIconObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Arts/Side Effects Icon/" + sideEffectTypeEnum.ToString());

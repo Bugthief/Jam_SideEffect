@@ -2818,8 +2818,8 @@ MonoBehaviour:
   effectWarningPrefab: {fileID: 9061296008691649513, guid: 4e15a03bee6e3e048b7f76603164d1c0, type: 3}
   effectWarningParentTransform: {fileID: 901404662}
   changeSideEffectBar: {fileID: 322139819}
-  foodOntheBelfParent: {fileID: 0}
-  foodManager: {fileID: 0}
+  foodOntheBelfParent: {fileID: 1797693906}
+  foodManager: {fileID: 2100072217}
 --- !u!4 &566165689
 Transform:
   m_ObjectHideFlags: 0
@@ -3298,6 +3298,7 @@ MonoBehaviour:
   slot_1_transform: {fileID: 1122130513}
   slot_2_transform: {fileID: 1385678072}
   foodManager: {fileID: 2100072217}
+  nextPlateInfo: {fileID: 1972432145}
   eatingTime: 0
 --- !u!1 &726877848
 GameObject:

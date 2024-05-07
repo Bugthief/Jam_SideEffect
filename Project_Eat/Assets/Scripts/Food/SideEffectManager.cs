@@ -20,6 +20,7 @@ public class SideEffectManager : MonoBehaviour
     public bool isCarnivore = false;
 
     public TimeManager timeManager;
+    public GameObject cam;
 
     public GameObject effectIconPrefab;
     public Transform effectIconParentTransform;
@@ -60,7 +61,7 @@ public class SideEffectManager : MonoBehaviour
         time = time * timeA + timeB;
         point += pointB;
 
-        Debug.Log(food.FoodName + " ·ÖÊý£º " + point + "Ê±¼ä£º " + time);
+        Debug.Log(food.FoodName + " ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ " + point + "Ê±ï¿½ä£º " + time);
 
         return (time, point);
     }
@@ -258,6 +259,7 @@ public class SideEffectManager : MonoBehaviour
 
     public void EffectElder(SideEffect sideEffect)
     {
+        cam.GetComponent<ShaderManage>().elder = true;
         BlurTheFood(10f);
     }
 
@@ -303,6 +305,7 @@ public class SideEffectManager : MonoBehaviour
     public void EffectNumb(SideEffect sideEffect)
     {
         timeA *= 1.1f;
+        cam.GetComponent<ShaderManage>().numb = true;
         timeManager.PauseCountDown(10f);
     }
 
@@ -331,6 +334,7 @@ public class SideEffectManager : MonoBehaviour
 
     public void EffectShining(SideEffect sideEffect)
     {
+        cam.GetComponent<ShaderManage>().shining = true;
         DestoryTheFood();
     }
 
@@ -342,6 +346,9 @@ public class SideEffectManager : MonoBehaviour
 
     public void EffectToxic(SideEffect sideEffect)
     {
+
+        cam.GetComponent<ShaderManage>().toxic = true;
+
         switch (sideEffect.SideEffectCount)
         {
             case 1:
@@ -355,6 +362,8 @@ public class SideEffectManager : MonoBehaviour
                 BuffEffect(SideEffectTypeEnum.ThrowUp);
                 return;
         }
+
+
     }
 
     public void EffectVegan(SideEffect sideEffect)

@@ -16,6 +16,7 @@ public class SideEffectManager : MonoBehaviour
     public float NonPicaFoodb;
 
     public bool isVeganBuffed = false;
+    public bool isOnePlusOne = false;
     public bool isCarnivore = false;
 
     public TimeManager timeManager;
@@ -28,6 +29,9 @@ public class SideEffectManager : MonoBehaviour
     public Transform effectWarningParentTransform;
 
     public ChangeSideEffectBar changeSideEffectBar;
+
+    public Transform foodOntheBelfParent;
+    public FoodManager foodManager;
 
 
     private void Start()
@@ -42,9 +46,6 @@ public class SideEffectManager : MonoBehaviour
         NonPicaFoodb = 1f;
 
         //test
-        BuffEffect(SideEffectTypeEnum.Anger);
-        BuffEffect(SideEffectTypeEnum.Anger);
-        BuffEffect(SideEffectTypeEnum.Anger);
     }
 
     public (float, float) CalculateUnderEffect(Food food)
@@ -52,8 +53,9 @@ public class SideEffectManager : MonoBehaviour
         float time = food.FoodTime;
         float point = food.FoodPoint;
 
-        (time, point) = CheckVegan(food, time, point);
+        point = CheckVegan(food, point);
         point = CheckPica(food, point);
+        point = CheckOnePlusOne(food, point);
         CheckCarnivore(food);
 
         time = time * timeA + timeB;
@@ -151,6 +153,10 @@ public class SideEffectManager : MonoBehaviour
             case SideEffectTypeEnum.Carnivore:
                 EffectCarnivore(thisSideEffect);
                 return;
+
+            case SideEffectTypeEnum.OnePlusOne:
+                EffectOnePlusOne(thisSideEffect);
+                return;
         }
     }
 
@@ -204,24 +210,24 @@ public class SideEffectManager : MonoBehaviour
 
     public void EffectBloating(SideEffect sideEffect)
     {
-        timeA *= 0.85f;
+        timeA *= 1.15f;
     }
 
     public void EffectBurning(SideEffect sideEffect)
     {
         switch (sideEffect.SideEffectCount)
         {
-            case <3:
-                timeA *= 0.95f;
+            case < 3:
+                timeA *= 1.05f;
                 return;
 
             case 3:
-                timeA *= 0.9f;
+                timeA *= 1.1f;
                 return;
 
             case > 3:
                 //stop eating for 10 seconds.
-                StartCoroutine(StopEating(10f));
+                PassTimeToFoodManager(10f);
                 return;
 
         }
@@ -258,7 +264,7 @@ public class SideEffectManager : MonoBehaviour
 
     public void EffectExcited(SideEffect sideEffect)
     {
-        StartCoroutine(StopEating(10f));
+        PassTimeToFoodManager(10f);
     }
 
     public void EffectImSick(SideEffect sideEffect)
@@ -266,13 +272,12 @@ public class SideEffectManager : MonoBehaviour
         switch (sideEffect.SideEffectCount)
         {
             case 1:
-                timeA *= 1.05f;
+                timeA *= 1.15f;
                 return;
 
             case 2:
-                timeA *= 1.05f;
-                pointB += 1f;
-                StartCoroutine(StopEating(10f));
+                timeA *= 1.3f;
+                PassTimeToFoodManager(10f);
                 return;
         }
     }
@@ -281,6 +286,10 @@ public class SideEffectManager : MonoBehaviour
     {
         switch (sideEffect.SideEffectCount)
         {
+            case < 4:
+
+                PassTimeToFoodManager(10f);
+                return;
             case 4:
 
                 return;
@@ -294,6 +303,7 @@ public class SideEffectManager : MonoBehaviour
 
     public void EffectNumb(SideEffect sideEffect)
     {
+        timeA *= 1.1f;
         timeManager.PauseCountDown(10f);
     }
 
@@ -328,6 +338,7 @@ public class SideEffectManager : MonoBehaviour
     public void EffectThrowUp(SideEffect sideEffect)
     {
         GameManager.Instance.currentPoint *= 0.8f;
+        PassTimeToFoodManager(10f);
     }
 
     public void EffectToxic(SideEffect sideEffect)
@@ -335,10 +346,10 @@ public class SideEffectManager : MonoBehaviour
         switch (sideEffect.SideEffectCount)
         {
             case 1:
-                
+
                 return;
             case 2:
-                timeA *= 0.85f;
+                timeA *= 1.15f;
                 pointB += 1f;
                 return;
             case > 2:
@@ -357,9 +368,14 @@ public class SideEffectManager : MonoBehaviour
         isCarnivore = true;
     }
 
-    public IEnumerator StopEating(float time)
+    public void EffectOnePlusOne(SideEffect sideEffect)
     {
-        yield return new WaitForSeconds(time);
+        isOnePlusOne = true;
+    }
+
+    public void PassTimeToFoodManager(float time)
+    {
+        foodManager.timeByEffect += time;
     }
 
     public void BlurTheFood(float time)
@@ -369,33 +385,48 @@ public class SideEffectManager : MonoBehaviour
 
     public void DestoryTheFood()
     {
-
+        foreach (Transform child in foodOntheBelfParent)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
-    public (float, float) CheckVegan(Food food, float time, float point)
+    public float CheckVegan(Food food, float point)
     {
-        if (!isVeganBuffed) return (time, point);
+        if (!isVeganBuffed) return point;
 
         if (!food.FoodTypeList.Contains(FoodTypeEnum.Vegetables))
         {
             point = 0f;
-            time = 0f;
         }
 
-        return (time, point);
+        isVeganBuffed = false;
+
+        return point;
     }
 
     public float CheckPica(Food food, float point)
     {
         if (food.FoodTypeList.Contains(FoodTypeEnum.Strange))
         {
-            Debug.Log(food);
             point += PicaFoodB;
         }
         else
         {
-            Debug.Log(food);
             point += NonPicaFoodb;
+        }
+
+        return point;
+    }
+
+    public float CheckOnePlusOne(Food food, float point)
+    {
+        if (!isOnePlusOne) return point;
+
+        if (food.FoodTypeList.Contains(FoodTypeEnum.Drink))
+        {
+            point += food.FoodPoint;
+            isOnePlusOne = false;
         }
 
         return point;

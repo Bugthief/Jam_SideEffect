@@ -2326,6 +2326,8 @@ MonoBehaviour:
   effectWarningPrefab: {fileID: 9061296008691649513, guid: 4e15a03bee6e3e048b7f76603164d1c0, type: 3}
   effectWarningParentTransform: {fileID: 901404662}
   changeSideEffectBar: {fileID: 322139819}
+  foodOntheBelfParent: {fileID: 1797693906}
+  foodManager: {fileID: 2100072217}
 --- !u!4 &566165689
 Transform:
   m_ObjectHideFlags: 0
@@ -7796,6 +7798,7 @@ MonoBehaviour:
   parent_Waiting: {fileID: 1295321151}
   plate_Eating: {fileID: 689405611}
   plate_Waiting: {fileID: 1992977509}
+  timeByEffect: 0
 --- !u!1001 &2106558868
 PrefabInstance:
   m_ObjectHideFlags: 0

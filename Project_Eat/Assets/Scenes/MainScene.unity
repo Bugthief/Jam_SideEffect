@@ -1857,6 +1857,7 @@ GameObject:
   - component: {fileID: 322139817}
   - component: {fileID: 322139816}
   - component: {fileID: 322139818}
+  - component: {fileID: 322139819}
   m_Layer: 5
   m_Name: Effect Icon Parent
   m_TagString: Untagged
@@ -1881,9 +1882,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 325}
-  m_SizeDelta: {x: 800, y: 300}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -63, y: 438}
+  m_SizeDelta: {x: 970, y: 163}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &322139816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1897,14 +1898,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 6554989, guid: 449221b1f19c19845ae2f25375a65a4d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1935,17 +1936,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 20
-    m_Right: 20
-    m_Top: 20
-    m_Bottom: 20
+    m_Left: 120
+    m_Right: 150
+    m_Top: 40
+    m_Bottom: 40
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 80, y: 80}
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 1
-  m_ConstraintCount: 7
+  m_ConstraintCount: 8
+--- !u!114 &322139819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322139814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b1667aa7d3ab948b34bd5ccec58bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallBackground: {fileID: 6554989, guid: 449221b1f19c19845ae2f25375a65a4d, type: 3}
+  midBackground: {fileID: 1352258548, guid: 449221b1f19c19845ae2f25375a65a4d, type: 3}
+  largeBackground: {fileID: 911839059, guid: 449221b1f19c19845ae2f25375a65a4d, type: 3}
 --- !u!1 &363409992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,6 +2324,7 @@ MonoBehaviour:
   effectTextBoxParentTransform: {fileID: 1360616327}
   effectWarningPrefab: {fileID: 9061296008691649513, guid: 4e15a03bee6e3e048b7f76603164d1c0, type: 3}
   effectWarningParentTransform: {fileID: 901404662}
+  changeSideEffectBar: {fileID: 322139819}
 --- !u!4 &566165689
 Transform:
   m_ObjectHideFlags: 0

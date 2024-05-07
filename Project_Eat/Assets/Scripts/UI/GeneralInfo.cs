@@ -1,25 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GeneralInfo : MonoBehaviour
 {
-    public TMP_Text pointText;
-    public TMP_Text timeText;
+    public Image pointImage;
+    public Image timeImage;
 
-    public void UpdatePointText(float point)
+    float maxTime;
+    float maxPoint;
+
+    public void UpdatePointImage(float point)
     {
-        pointText.text = "分数： " + point.ToString();
+        float fillAmount = Mathf.Clamp01(point / maxPoint);
+        pointImage.fillAmount = fillAmount;
     }
 
-    public void UpdateTimeText(float time)
+    public void UpdateTimeImage(float time)
     {
-        timeText.text = "时间： " + time.ToString();
+        float fillAmount = Mathf.Clamp01(time / maxTime);
+        timeImage.fillAmount = fillAmount;
     }
 
     private void Start()
     {
-        UpdatePointText(GameManager.Instance.currentPoint);
+        maxTime = GameManager.Instance.maxTime;
+        maxPoint = GameManager.Instance.maxPoint;
+
+        UpdatePointImage(GameManager.Instance.currentPoint);
+        UpdateTimeImage(GameManager.Instance.currentTime);
     }
 }

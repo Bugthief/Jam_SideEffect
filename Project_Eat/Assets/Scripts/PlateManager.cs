@@ -16,6 +16,9 @@ public class PlateManager : MonoBehaviour
     public EatingPlate eatingPlate;
     public bool isEating;
 
+
+    
+
     private void Start()
     {
         InitializePlate();
@@ -32,6 +35,8 @@ public class PlateManager : MonoBehaviour
 
             InitializePlate();
         }
+
+        
     }
 
     private void EatingStatusChanged(bool newStatus)
@@ -75,4 +80,5 @@ public class PlateManager : MonoBehaviour
         foodKeyList = new List<string>();
     }
 
+    
 }

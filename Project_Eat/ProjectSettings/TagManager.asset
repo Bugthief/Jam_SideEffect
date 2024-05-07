@@ -8,6 +8,9 @@ TagManager:
   - plate
   - Hands
   - ghost
+  - parent_belting
+  - parent_eating
+  - parent_waiting
   layers:
   - Default
   - TransparentFX

@@ -721,6 +721,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ca84a40527b2b47bd1061d3010b706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent_Belting: {fileID: 0}
+  parent_Eating: {fileID: 0}
+  parent_Waiting: {fileID: 0}
+  plate_Eating: {fileID: 0}
+  plate_Waiting: {fileID: 0}
   ghost: {fileID: 0}
   isDragging: 0
   isLocked: 0

@@ -3,6 +3,9 @@ using UnityEngine;
 // 食物的运动
 public class DraggableFood : MonoBehaviour
 {
+    // 盲盒食物 
+
+
 
     // public GameObject ghostPrefab; // 虚影的预制体
     // public GameObject slot; // 槽位预制体游戏对象
@@ -20,10 +23,14 @@ public class DraggableFood : MonoBehaviour
     public FoodProps foodProps;
     public string foodKey;
 
+
     private void Start()
     {
         targetCanvas.worldCamera = Camera.main;
         introTextBox.SetActive(false);
+
+        if (GameObject.FindGameObjectWithTag("parent_belting") != null)
+            gameObject.transform.parent = GameObject.FindGameObjectWithTag("parent_belting").transform;
     }
 
     void Update()
@@ -67,6 +74,8 @@ public class DraggableFood : MonoBehaviour
                     Destroy(ghost); // 无论是否重叠，松开鼠标都消除虚影
                 }
             }
+
+
         }
 
         if (gameObject.tag == "ghost")
@@ -75,7 +84,7 @@ public class DraggableFood : MonoBehaviour
         }
         else
         {
-            if(ghost == null)
+            if (ghost == null)
             {
                 introTextBox.SetActive(IsMouseOverFood());
             }
@@ -156,7 +165,7 @@ public class DraggableFood : MonoBehaviour
         GameObject plate = GameObject.FindGameObjectWithTag("plate");
 
         if (ghost == null || plate == null) return false;
-        
+
         Collider2D ghostCollider = ghost.GetComponent<BoxCollider2D>();
         Collider2D plateCollider = plate.GetComponent<BoxCollider2D>();
 
@@ -184,7 +193,8 @@ public class DraggableFood : MonoBehaviour
             PlateManager plateManager = FindObjectOfType<PlateManager>();
             plateManager.foodKeyList.Add(foodKey);
 
-            if(plateManager.food_1 == null){
+            if (plateManager.food_1 == null)
+            {
                 plateManager.food_1 = gameObject;
             }
             else
@@ -193,4 +203,6 @@ public class DraggableFood : MonoBehaviour
             }
         }
     }
+
+
 }

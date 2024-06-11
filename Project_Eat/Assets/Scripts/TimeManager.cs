@@ -66,6 +66,7 @@ public class TimeManager : MonoBehaviour
 
     void TimeBar_GetTime()
     {
-        timeProgressBar.GetComponent<Slider>().value = timeLeft;
+        if(timeProgressBar != null)
+            timeProgressBar.GetComponent<Slider>().value = timeLeft;
     }
 }

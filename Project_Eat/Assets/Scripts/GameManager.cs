@@ -6,25 +6,33 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [Header("时间设置")]
     public float currentTime;
     public float maxTime;
 
+    public float timeA;
+    public float timeB;
+
+    [Header("分数设置")]
     public float currentPoint;
     public float maxPoint;
 
     public float pointA;
     public float pointB;
-    public float timeA;
-    public float timeB;
 
+    [Header("获胜")]
     public bool isWinning = false;
 
     public Dictionary<string, Food> FoodDictionary;
     public Dictionary<SideEffectTypeEnum, SideEffect> SideEffectDictionary;
 
+    [Header("食物Key列表")]
+    public List<string> FoodKeyList;
+
+    [Header("时间管理器")]
     public TimeManager timeManager;
 
-    public List<string> FoodKeyList;
+    
 
     private void Awake()
     {

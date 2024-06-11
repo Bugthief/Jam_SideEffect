@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -23,9 +23,9 @@ public class SideEffectIcon : MonoBehaviour
         string sideEffectDetail = string.Join(", ", thisSideEffect.SideEffectDetailsList);
 
         sideEffectIntro.text =
-            "√˚≥∆£∫ " + thisSideEffect.SideEffectName + "\n" +
-            "ΩÈ…‹£∫ " + sideEffectDetail + "\n" +
-            "≤„ ˝£∫ " + thisSideEffect.SideEffectCount;
+            "ÂêçÁß∞Ôºö " + thisSideEffect.SideEffectName + "\n" +
+            "‰ªãÁªçÔºö " + sideEffectDetail + "\n" +
+            "Â±ÇÊï∞Ôºö " + thisSideEffect.SideEffectCount;
     }
 
     public void MoveTextBox()

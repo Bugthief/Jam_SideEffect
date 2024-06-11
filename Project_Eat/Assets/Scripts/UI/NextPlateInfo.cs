@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -49,8 +49,8 @@ public class NextPlateInfo : MonoBehaviour
         FoodManager foodManager = FindAnyObjectByType<FoodManager>();
         (float realTime, float realPoint) = foodManager.CalculateFoodList(eatingFoodList);
 
-        string pointText = CompareAndDisplay(originalPoint, realPoint, "·ÖÊý");
-        string timeText = CompareAndDisplay(originalTime, realTime, "Ê±¼ä");
+        string pointText = CompareAndDisplay(originalPoint, realPoint, "åˆ†æ•°");
+        string timeText = CompareAndDisplay(originalTime, realTime, "æ—¶é—´");
 
         string sideEffects = null;
 
@@ -63,18 +63,18 @@ public class NextPlateInfo : MonoBehaviour
 
             if (i < count - 1)
             {
-                sideEffects += "£¬";
+                sideEffects += "ï¼Œ";
             }
         }
 
         string fullText = null;
-        fullText += "Ê³ÎïÃû³Æ: " + foodNames + "\n" +
+        fullText += "é£Ÿç‰©åç§°: " + foodNames + "\n" +
             pointText + "\n" +
             timeText + "\n";
 
         if (count != 0)
         {
-            fullText += "¸±×÷ÓÃ: " + sideEffects;
+            fullText += "å‰¯ä½œç”¨: " + sideEffects;
         }
 
         textBox.text = fullText;
@@ -93,6 +93,6 @@ public class NextPlateInfo : MonoBehaviour
 
     public void FinishEatingInfo()
     {
-        textBox.text = "ÔÝÎÞ";
+        textBox.text = "æš‚æ— ";
     }
 }

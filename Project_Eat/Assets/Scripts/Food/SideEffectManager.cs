@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -61,7 +61,7 @@ public class SideEffectManager : MonoBehaviour
         time = time * timeA + timeB;
         point += pointB;
 
-        Debug.Log(food.FoodName + " ������ " + point + "ʱ�䣺 " + time);
+        Debug.Log(food.FoodName + " 锟斤拷锟斤拷锟斤拷 " + point + "时锟戒： " + time);
 
         return (time, point);
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static Food;
 
 public class FoodManager : MonoBehaviour
@@ -23,6 +24,9 @@ public class FoodManager : MonoBehaviour
 
     public GameObject plate_Eating;
     public GameObject plate_Waiting;
+
+    public GameObject eatingProgressBarObj;
+    public TMPro.TMP_Text eatingProgressText;
 
     public float timeByEffect;
 
@@ -88,19 +92,20 @@ public class FoodManager : MonoBehaviour
 
             GeneralInfo.UpdatePointImage(GameManager.Instance.currentPoint);
 
-            StartCoroutine(SpedingMoreTime(timeByEffect));
+            StartCoroutine(SpendingMoreTime(timeByEffect));
         }));
     }
 
     public IEnumerator SpendingTime(float time, Action onComplete)
     {
+        StartCoroutine(EatingProgressGoing(time));
         yield return new WaitForSeconds(time);
 
         // Call the onComplete action when the coroutine completes
         onComplete?.Invoke();
     }
 
-    public IEnumerator SpedingMoreTime(float time)
+    public IEnumerator SpendingMoreTime(float time)
     {
         yield return new WaitForSeconds(time);
         IsEating = false;
@@ -159,6 +164,29 @@ public class FoodManager : MonoBehaviour
             //print("2 go in Waiting!!!!!!");
 
         }
+    }
+
+    // Coroutine to handle the eating progress over a given time
+    private IEnumerator EatingProgressGoing(float time)
+    {
+        Image progressBarImage = eatingProgressBarObj.GetComponent<Image>();
+        progressBarImage.fillAmount = 1f;
+        eatingProgressText.text = "0 / " + Mathf.FloorToInt(time).ToString();
+        
+        float elapsedTime = 0f;
+
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+            eatingProgressText.text = Mathf.FloorToInt(elapsedTime).ToString() + " / " + Mathf.FloorToInt(time).ToString();
+            progressBarImage.fillAmount = Mathf.Clamp01(1f - (elapsedTime / time));
+
+            yield return null; // Wait until the next frame
+        }
+
+        // Ensure the progress bar is empty at the end
+        eatingProgressText.text = null;
+        progressBarImage.fillAmount = 0f;
     }
 
 }

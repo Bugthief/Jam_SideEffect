@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using static Food;
@@ -41,7 +41,7 @@ public class SideEffectWarning : MonoBehaviour
 
     public void UpdateSideEffectWarningText(SideEffectTypeEnum thisSideEffectKey)
     {
-        tmpText.text = "ÐÂ¸±×÷ÓÃ£º" + GameManager.Instance.SideEffectDictionary[thisSideEffectKey].SideEffectName;
+        tmpText.text = "æ–°å‰¯ä½œç”¨ï¼š" + GameManager.Instance.SideEffectDictionary[thisSideEffectKey].SideEffectName;
     }
 
 }
